@@ -32,6 +32,7 @@ class Grupo extends StatelessWidget {
       children: [
         CampoBusqueda(),
         MiniTarjeta(
+          margenSuperior: 20,
           urlImagen:
               'https://img.asmedia.epimg.net/resizer/v2/2VYSIIZKZNBWJBGDGKHVP2SR7U.jpg?auth=7daff22f993bb1b1c13b1e70bf3edcecad80e4d5d78e9636faa2b040bd872713&width=1200&height=1200&smart=true',
           titulo: 'Edynson Muñoz Jimenez',

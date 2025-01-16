@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movil/core/theme/color_tema.dart';
+import 'package:movil/core/theme/tipografia.dart';
 
 class CampoBusqueda extends StatelessWidget {
   CampoBusqueda({super.key});
@@ -44,9 +46,17 @@ class CampoBusqueda extends StatelessWidget {
 
   Widget cuadroBusqueda(BuildContext context) {
     return Container(
-        height: 40,
+        height: 50,
         child: TextField(
-          decoration: InputDecoration(hintText: 'buscar...'),
+          decoration: InputDecoration(
+            hintText: 'buscar instructor...',
+            prefixIcon: Icon(Icons.search),
+            hintStyle: TextStyle(
+                color: ColorTheme.neutral, fontFamily: Tipografia.cuerpo),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+          ),
         ));
   }
 }
