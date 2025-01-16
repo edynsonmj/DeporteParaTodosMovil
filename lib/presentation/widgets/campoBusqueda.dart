@@ -3,45 +3,12 @@ import 'package:movil/core/theme/color_tema.dart';
 import 'package:movil/core/theme/tipografia.dart';
 
 class CampoBusqueda extends StatelessWidget {
-  CampoBusqueda({super.key});
+  String leyenda;
+  CampoBusqueda({super.key, required this.leyenda});
 
   @override
   Widget build(BuildContext context) {
     return cuadroBusqueda(context);
-    /*
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          TextField(
-            //controller: _searchController,
-            decoration: InputDecoration(
-              hintText: 'Buscar...',
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-            ),
-            onChanged: (value) {
-              // Aquí puedes manejar el texto ingresado
-              print('Texto buscado: $value');
-            },
-          ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: ListView(
-              children: List.generate(
-                10,
-                (index) => ListTile(
-                  title: Text('Elemento $index'),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-    */
   }
 
   Widget cuadroBusqueda(BuildContext context) {
@@ -49,7 +16,7 @@ class CampoBusqueda extends StatelessWidget {
         height: 50,
         child: TextField(
           decoration: InputDecoration(
-            hintText: 'buscar instructor...',
+            hintText: leyenda,
             prefixIcon: Icon(Icons.search),
             hintStyle: TextStyle(
                 color: ColorTheme.neutral, fontFamily: Tipografia.cuerpo),
