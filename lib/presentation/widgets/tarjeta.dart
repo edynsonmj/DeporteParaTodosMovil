@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movil/core/theme/color_tema.dart';
+import 'package:movil/core/theme/tipografia.dart';
 import 'package:movil/presentation/widgets/edit_icon.dart';
 
 ///Widget sin estado que muestra una tarjeta con imagen e informacion
@@ -17,9 +18,12 @@ class Tarjeta extends StatelessWidget {
       this.rutaEdicion});
   @override
   Widget build(BuildContext context) {
-    //obtengo el tamaño del contexto
+    return tarjeta(context);
+  }
+
+  Widget tarjeta(BuildContext context) {
     final dimension = MediaQuery.of(context).size;
-    return Card(
+    Card tarjeta = Card(
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
         elevation: 4,
         //border redondeados
@@ -37,6 +41,7 @@ class Tarjeta extends StatelessWidget {
                       top: 8, right: 8, child: EditIcon(ruta: rutaEdicion))
               ],
             )));
+    return tarjeta;
   }
 
   //contenido de la carta encapsulado
@@ -81,11 +86,7 @@ class Tarjeta extends StatelessWidget {
   }
 
   Widget titulo() {
-    return const Text(
-      'soy jinx',
-      style: TextStyle(
-          fontSize: 18, fontWeight: FontWeight.bold, color: ColorTheme.primary),
-    );
+    return Text('soy jinx', style: Tipografia.h6(color: ColorTheme.primary));
   }
 
   Widget info() {
@@ -111,25 +112,18 @@ class Tarjeta extends StatelessWidget {
   Widget descripcion(String texto) {
     return Container(
         margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-        child: Text(
-          texto,
-          maxLines: 3,
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(fontSize: 16),
-        ));
+        child: Text(texto,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            style: Tipografia.cuerpo2()));
   }
 
   Widget pieTarjeta(String texto) {
     return Container(
         margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-        child: Text(
-          texto,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
-              fontSize: 12,
-              color: ColorTheme.secondary,
-              fontWeight: FontWeight.bold),
-        ));
+        child: Text(texto,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: Tipografia.leyendaNegrita(color: ColorTheme.secondary)));
   }
 }

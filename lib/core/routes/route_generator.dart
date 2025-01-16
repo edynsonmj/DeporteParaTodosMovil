@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movil/core/routes/app_rutas.dart';
 import 'package:movil/presentation/screens/curso.dart';
 import 'package:movil/presentation/screens/cursos.dart';
+import 'package:movil/presentation/screens/grupo.dart';
 import 'package:movil/presentation/screens/inicio.dart';
 import 'package:movil/presentation/screens/page1.dart';
 import 'package:movil/presentation/screens/page2.dart';
@@ -20,6 +21,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case AppRutas.curso:
       return MaterialPageRoute(builder: (_) => Curso());
+
+    case AppRutas.grupo:
+      return MaterialPageRoute(builder: (_) => Grupo());
 
     default:
       return MaterialPageRoute(builder: (_) => const Page1());

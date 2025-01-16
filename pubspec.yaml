@@ -45,7 +45,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -58,7 +58,98 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  fonts:
+  #Tipografia definida en los lineamientos de diseño de la division tic
+      - family: OpenSans
+        fonts:
+          - asset: assets\fonts\Open_Sans\static\OpenSans-SemiBoldItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans-SemiBold.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans-Regular.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans-MediumItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans-Medium.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans-LightItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans-Light.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans-Italic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans-ExtraBoldItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans-ExtraBold.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans-BoldItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans-Bold.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_SemiCondensed-SemiBoldItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_SemiCondensed-SemiBold.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_SemiCondensed-Regular.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_SemiCondensed-MediumItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_SemiCondensed-Medium.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_SemiCondensed-LightItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_SemiCondensed-Light.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_SemiCondensed-Italic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_SemiCondensed-ExtraBoldItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_SemiCondensed-ExtraBold.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_SemiCondensed-BoldItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_SemiCondensed-Bold.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_Condensed-SemiBoldItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_Condensed-SemiBold.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_Condensed-Regular.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_Condensed-MediumItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_Condensed-Medium.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_Condensed-LightItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_Condensed-Light.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_Condensed-Italic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_Condensed-ExtraBoldItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_Condensed-ExtraBold.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_Condensed-BoldItalic.ttf
+          - asset: assets\fonts\Open_Sans\static\OpenSans_Condensed-Bold.ttf
+          - asset: assets\fonts\Open_Sans\OpenSans-VariableFont_wdth,wght.ttf
+          - asset: assets\fonts\Open_Sans\OpenSans-Italic-VariableFont_wdth,wght.ttf
+      
+      - family: TitiliumWeb
+        fonts:
+          - asset: assets\fonts\Titillium_Web\TitilliumWeb-SemiBoldItalic.ttf
+          - asset: assets\fonts\Titillium_Web\TitilliumWeb-SemiBold.ttf
+          - asset: assets\fonts\Titillium_Web\TitilliumWeb-Regular.ttf
+          - asset: assets\fonts\Titillium_Web\TitilliumWeb-LightItalic.ttf
+          - asset: assets\fonts\Titillium_Web\TitilliumWeb-Light.ttf
+          - asset: assets\fonts\Titillium_Web\TitilliumWeb-Italic.ttf
+          - asset: assets\fonts\Titillium_Web\TitilliumWeb-ExtraLightItalic.ttf
+          - asset: assets\fonts\Titillium_Web\TitilliumWeb-ExtraLight.ttf
+          - asset: assets\fonts\Titillium_Web\TitilliumWeb-BoldItalic.ttf
+          - asset: assets\fonts\Titillium_Web\TitilliumWeb-Bold.ttf
+          - asset: assets\fonts\Titillium_Web\TitilliumWeb-Black.ttf
 
+      - family: FiraSans
+        fonts:
+          - asset: assets\fonts\Fira_Sans\FiraSans-Black.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-BlackItalic.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-Bold.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-BoldItalic.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-ExtraBold.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-ExtraBoldItalic.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-ExtraLight.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-ExtraLightItalic.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-Italic.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-Light.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-LightItalic.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-Medium.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-MediumItalic.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-Regular.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-SemiBold.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-SemiBoldItalic.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-Thin.ttf
+          - asset: assets\fonts\Fira_Sans\FiraSans-ThinItalic.ttf
+      - family: Playfair
+        fonts:
+          - asset: assets\fonts\Playfair_Display\PlayfairDisplay-VariableFont_wght.ttf
+          - asset: assets\fonts\Playfair_Display\PlayfairDisplay-VariableFont_wght.ttf
+          - asset: assets\fonts\Playfair_Display\static\PlayfairDisplay-Black.ttf
+          - asset: assets\fonts\Playfair_Display\static\PlayfairDisplay-Bold.ttf
+          - asset: assets\fonts\Playfair_Display\static\PlayfairDisplay-BoldItalic.ttf
+          - asset: assets\fonts\Playfair_Display\static\PlayfairDisplay-ExtraBold.ttf
+          - asset: assets\fonts\Playfair_Display\static\PlayfairDisplay-ExtraBoldItalic.ttf
+          - asset: assets\fonts\Playfair_Display\static\PlayfairDisplay-Italic.ttf
+          - asset: assets\fonts\Playfair_Display\static\PlayfairDisplay-Medium.ttf
+          - asset: assets\fonts\Playfair_Display\static\PlayfairDisplay-MediumItalic.ttf
+          - asset: assets\fonts\Playfair_Display\static\PlayfairDisplay-Regular.ttf
+          - asset: assets\fonts\Playfair_Display\static\PlayfairDisplay-SemiBold.ttf
+          - asset: assets\fonts\Playfair_Display\static\PlayfairDisplay-SemiBoldItalic.ttf
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

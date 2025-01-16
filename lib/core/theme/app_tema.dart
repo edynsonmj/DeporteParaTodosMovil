@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movil/core/theme/color_tema.dart';
+import 'package:movil/core/theme/tipografia.dart';
 
 class AppTheme {
   final ColorScheme _colorScheme = const ColorScheme(
@@ -17,15 +18,64 @@ class AppTheme {
     return ThemeData(
       colorScheme: _colorScheme,
       elevatedButtonTheme: _elevatedButton(),
-      //fontFamily: 'FiraSans',
+      filledButtonTheme: _filledButton(),
+      outlinedButtonTheme: _outLinedButton(),
+      textButtonTheme: _textButton(),
+      dropdownMenuTheme: _dropdownMenu(),
+      chipTheme: _chipTheme(),
       useMaterial3: true,
     );
+  }
+
+  DropdownMenuThemeData _dropdownMenu() {
+    return DropdownMenuThemeData(
+        textStyle: Tipografia.boton2(),
+        inputDecorationTheme: InputDecorationTheme(
+          /*filled: true,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(50),
+                borderSide: BorderSide.none),
+            fillColor: ColorTheme.tonal,*/
+          border: UnderlineInputBorder(),
+          contentPadding: EdgeInsets.all(0),
+          constraints: BoxConstraints(maxHeight: 40),
+          isDense: true,
+        ));
+  }
+
+  TextButtonThemeData _textButton() {
+    return TextButtonThemeData(
+        style: TextButton.styleFrom(textStyle: Tipografia.boton1()));
+  }
+
+  ChipThemeData _chipTheme() {
+    return ChipThemeData(
+        side: BorderSide(color: ColorTheme.secondary),
+        labelStyle: Tipografia.leyendaNegrita(color: ColorTheme.secondary));
   }
 
   ElevatedButtonThemeData _elevatedButton() {
     return ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
             backgroundColor: ColorTheme.primary,
+            foregroundColor: Colors.white,
+            textStyle: Tipografia.boton1()));
+  }
+
+  FilledButtonThemeData _filledButton() {
+    return FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+            textStyle: Tipografia.boton1(),
+            backgroundColor: ColorTheme.primary,
             foregroundColor: Colors.white));
+  }
+
+  OutlinedButtonThemeData _outLinedButton() {
+    return OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+          foregroundColor: ColorTheme.primary,
+          side: BorderSide(color: ColorTheme.primary),
+          textStyle: Tipografia.boton1()),
+    );
   }
 }
