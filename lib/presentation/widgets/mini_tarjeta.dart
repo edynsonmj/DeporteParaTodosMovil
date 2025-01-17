@@ -102,9 +102,16 @@ class MiniTarjeta extends StatelessWidget {
         fit: BoxFit.cover,
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) return child;
-          //TODO: poner una imagen de carga
-          return const Text('cargando');
+          return Center(
+              child: CircularProgressIndicator(
+            value: loadingProgress.expectedTotalBytes != null
+                ? loadingProgress.cumulativeBytesLoaded /
+                    (loadingProgress.expectedTotalBytes ?? 1)
+                : null,
+          ));
         },
+        errorBuilder: (context, error, stackTrace) =>
+            Image.asset('assets/images/1.jpg'),
       ),
     );
   }
