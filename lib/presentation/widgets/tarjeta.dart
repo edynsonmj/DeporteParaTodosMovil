@@ -3,19 +3,30 @@ import 'package:movil/core/theme/color_tema.dart';
 import 'package:movil/core/theme/tipografia.dart';
 import 'package:movil/presentation/widgets/edit_icon.dart';
 
+//TODO: establecer tamaño predeterminado para el contenedor de la imagen
+//TODO: definir imagen por defecto para la imagen
 ///Widget sin estado que muestra una tarjeta con imagen e informacion
 class Tarjeta extends StatelessWidget {
-  String? deporte;
-  String? categoria;
-  String? rutaTarjeta;
-  String? rutaEdicion;
+  String? atrUrlImagen;
+  String? atrTitulo;
+  String? atrDescripcion;
+  String? atrInfo1;
+  String? atrInfo2;
+  String? atrInfoPie;
+  String? atrRutaTarjeta;
+  String? atrRutaEdicion;
 
   Tarjeta(
       {super.key,
-      this.deporte,
-      this.categoria,
-      this.rutaTarjeta,
-      this.rutaEdicion});
+      //la url de la imagen no puede ser nula, pero si vacia, en cuyo caso tomara el valor por defecto
+      this.atrUrlImagen = '',
+      this.atrTitulo,
+      this.atrDescripcion,
+      this.atrInfo1,
+      this.atrInfo2,
+      this.atrInfoPie,
+      this.atrRutaTarjeta,
+      this.atrRutaEdicion});
   @override
   Widget build(BuildContext context) {
     return tarjeta(context);
@@ -34,11 +45,11 @@ class Tarjeta extends StatelessWidget {
             child: Stack(
               children: [
                 //Retorna un SisedBox, el cual contiene la primera capa de Stack lo cual es el contenido de la tarjeta.
-                cardBox(context, dimension, rutaTarjeta),
+                cardBox(context, dimension, atrRutaTarjeta),
                 //se posiciona sobre la tarjeta el icono de edicion
-                if (rutaEdicion != null)
+                if (atrRutaEdicion != null)
                   Positioned(
-                      top: 8, right: 8, child: EditIcon(ruta: rutaEdicion))
+                      top: 8, right: 8, child: EditIcon(ruta: atrRutaEdicion))
               ],
             )));
     return tarjeta;
@@ -51,12 +62,12 @@ class Tarjeta extends StatelessWidget {
       //el contenido de la tarjeta se organizara en una columna
       child: Column(
         children: [
-          imagen(context, dimension),
+          if (atrUrlImagen != null) imagen(context, dimension),
           titulo(),
-          if (categoria != null && deporte != null) info(),
-          descripcion(
-              'Anim voluptate aliquip veniam ipsum in labore duis adipisicing reprehenderit. Occaecat dolore ut excepteur excepteur dolore exercitation ullamco incididunt ipsum nulla fugiat magna adipisicing veniam. Elit sit amet sint est minim aute elit pariatur commodo. Aliquip ullamco ut exercitation veniam sint nisi irure mollit ad aute labore duis ea eiusmod. Dolore magna fugiat cupidatat nisi officia cillum est. Nostrud reprehenderit eu ut esse exercitation ut ipsum dolore consectetur ut nostrud pariatur.'),
-          pieTarjeta('20 alumnos')
+          //notese que se hacen las validaciones previo a pasar los datos, para no tener errores de null
+          if (atrInfo2 != null && atrInfo1 != null) info(atrInfo1!, atrInfo2!),
+          if (atrDescripcion != null) descripcion(atrDescripcion!),
+          if (atrInfoPie != null) pieTarjeta(atrInfoPie!)
         ],
       ),
       //comportamiento de Inkwell sobre la carta sera un enrutado a otra vista
@@ -73,28 +84,35 @@ class Tarjeta extends StatelessWidget {
       //border redondeador en la parte superior
       borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
       child: Image.network(
-        //TODO: recibir url
-        'https://img.asmedia.epimg.net/resizer/v2/2VYSIIZKZNBWJBGDGKHVP2SR7U.jpg?auth=7daff22f993bb1b1c13b1e70bf3edcecad80e4d5d78e9636faa2b040bd872713&width=1200&height=1200&smart=true',
+        atrUrlImagen!,
         fit: BoxFit.cover,
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) return child;
-          //TODO: poner una imagen de carga
-          return const Text('cargando');
+          return Center(
+              child: CircularProgressIndicator(
+            value: loadingProgress.expectedTotalBytes != null
+                ? loadingProgress.cumulativeBytesLoaded /
+                    (loadingProgress.expectedTotalBytes ?? 1)
+                : null,
+          ));
         },
+        errorBuilder: (context, error, stackTrace) =>
+            Image.asset('assets/images/1.jpg'),
       ),
     );
   }
 
   Widget titulo() {
-    return Text('soy jinx', style: Tipografia.h6(color: ColorTheme.primary));
+    return Text((atrTitulo != null) ? atrTitulo! : '',
+        style: Tipografia.h6(color: ColorTheme.primary));
   }
 
-  Widget info() {
+  Widget info(String info1, String info2) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        chipInfo('futbol', ColorTheme.secondary),
-        chipInfo('seleccionado', ColorTheme.secondary)
+        chipInfo(info1, ColorTheme.secondary),
+        chipInfo(info2, ColorTheme.secondary)
       ],
     );
   }
@@ -111,7 +129,7 @@ class Tarjeta extends StatelessWidget {
 
   Widget descripcion(String texto) {
     return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+        margin: const EdgeInsets.fromLTRB(15, 0, 15, 10),
         child: Text(texto,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,

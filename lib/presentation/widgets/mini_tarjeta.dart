@@ -20,7 +20,8 @@ class MiniTarjeta extends StatelessWidget {
     required this.titulo,
     required this.subtitulo,
     this.ruta,
-    this.urlImagen,
+    //la url de la imagen no puede ser nula, pero si vacia, en cuyo caso tomara el valor por defecto
+    this.urlImagen = '',
     this.indicador,
     this.indicadorEstado,
     this.botonCierre = false,

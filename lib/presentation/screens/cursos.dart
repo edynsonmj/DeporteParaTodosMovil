@@ -9,14 +9,13 @@ class Cursos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: Bar(title: 'cursos'), body: contenedorSeguro(context));
+        appBar: Bar(title: 'Cursos'), body: contenedorSeguro(context));
   }
 
   ///Contenido de la vista, donde se evita que los elementos se sobrepongan sobre elementos de la interfaz del dispositivo
   SafeArea contenedorSeguro(BuildContext context) {
     //orientacion del dispositivo
     final Orientation orientacion = MediaQuery.of(context).orientation;
-
     //primera seccion de la pantalla
     Container contenidoEstatico = Container(
         margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
@@ -28,10 +27,9 @@ class Cursos extends StatelessWidget {
             TextButton(onPressed: () {}, child: Text('INSCRIPCIONES'))
           ],
         ));
-
     //elementos de la vista sobre las cuales se puede hacer scroll
     Expanded listaItems = componenteLista(orientacion);
-
+    //encapsulo todo en safeArea
     return SafeArea(
         child: Column(
       children: [contenidoEstatico, listaItems],
@@ -42,7 +40,7 @@ class Cursos extends StatelessWidget {
     return Expanded(
       child: Center(
           child: ListView.builder(
-        itemCount: 3,
+        itemCount: 6,
         itemBuilder: (BuildContext context, int index) {
           if (index == 0) {
             return Padding(
@@ -55,7 +53,17 @@ class Cursos extends StatelessWidget {
                   icon: Icon(Icons.add),
                 ));
           }
-          return Center(child: Tarjeta(rutaTarjeta: AppRutas.curso));
+          return Center(
+              child: Tarjeta(
+            atrRutaTarjeta: AppRutas.curso,
+            atrRutaEdicion: AppRutas.curso,
+            atrTitulo: 'curso $index',
+            atrInfo1: 'deporte $index',
+            atrInfo2: 'categoria $index',
+            atrDescripcion:
+                'Id anim dolor cillum est aliquip ipsum laboris pariatur id. Fugiat anim ad velit minim id irure Lorem fugiat aute eu. Elit esse anim ad dolore enim sunt non dolore veniam tempor voluptate. Dolore amet excepteur deserunt cillum exercitation dolor Lorem officia ad magna officia consequat cupidatat Lorem. Sint voluptate voluptate ut et consequat quis culpa id officia cillum. In in dolor amet consectetur ut laborum excepteur aliqua. Quis consequat ullamco nisi fugiat ipsum minim sint tempor consequat in nulla.',
+            atrInfoPie: '${(index + 1) * 5} alumnos',
+          ));
         },
       )),
     );

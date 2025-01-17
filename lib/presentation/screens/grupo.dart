@@ -12,13 +12,14 @@ class Grupo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Bar(title: 'grupo'),
-      body: scroll(context),
+      appBar: Bar(title: 'Grupo X'),
+      body: contenedorSeguro(context),
     );
   }
 
-  Widget scroll(BuildContext context) {
-    return SingleChildScrollView(
+  Widget contenedorSeguro(BuildContext context) {
+    return SafeArea(
+        child: SingleChildScrollView(
       child: Column(
         children: [
           EncabezadoImagen(),
@@ -28,7 +29,7 @@ class Grupo extends StatelessWidget {
           )
         ],
       ),
-    );
+    ));
   }
 
   Widget contenedor() {
@@ -40,8 +41,6 @@ class Grupo extends StatelessWidget {
         MiniTarjeta(
           margenSuperior: 15,
           margenInferior: 15,
-          urlImagen:
-              'https://img.asmedia.epimg.net/resizer/v2/2VYSIIZKZNBWJBGDGKHVP2SR7U.jpg?auth=7daff22f993bb1b1c13b1e70bf3edcecad80e4d5d78e9636faa2b040bd872713&width=1200&height=1200&smart=true',
           titulo: 'Edynson Muñoz Jimenez',
           subtitulo: 'Instructor',
           botonCierre: true,
@@ -106,8 +105,6 @@ class Grupo extends StatelessWidget {
                   itemCount: 20, // Cambia esto según tu lista
                   itemBuilder: (BuildContext context, int index) {
                     return MiniTarjeta(
-                      urlImagen:
-                          'https://img.asmedia.epimg.net/resizer/v2/2VYSIIZKZNBWJBGDGKHVP2SR7U.jpg?auth=7daff22f993bb1b1c13b1e70bf3edcecad80e4d5d78e9636faa2b040bd872713&width=1200&height=1200&smart=true',
                       titulo: 'Alumno $index',
                       subtitulo: '123456789',
                       botonCierre: true,

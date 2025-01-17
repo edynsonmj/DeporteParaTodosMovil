@@ -6,18 +6,18 @@ import 'package:movil/presentation/widgets/bar.dart';
 import 'package:movil/presentation/widgets/edit_icon.dart';
 import 'package:movil/presentation/widgets/encabezadoImagen.dart';
 import 'package:movil/presentation/widgets/mini_tarjeta.dart';
-import 'package:movil/presentation/widgets/tarjeta.dart';
 
 class Curso extends StatelessWidget {
   const Curso({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: Bar(title: 'un curso'), body: scroll(context));
+    return Scaffold(appBar: Bar(title: 'Curso X'), body: contenedorSeguro());
   }
 
-  Widget scroll(BuildContext context) {
-    return SingleChildScrollView(
-        child: Column(
+  Widget contenedorSeguro() {
+    return SafeArea(
+        child: SingleChildScrollView(
+            child: Column(
       children: [
         // Contenido estático
         EncabezadoImagen(),
@@ -35,23 +35,7 @@ class Curso extends StatelessWidget {
                   child: Text('Grupos del curso', style: Tipografia.h5()),
                 ),
                 // Lista dinámica
-                ListView.builder(
-                  shrinkWrap: true, // Ajusta el tamaño de la lista al contenido
-                  physics:
-                      const NeverScrollableScrollPhysics(), // Desactiva scroll interno
-                  itemCount: 20, // Cambia esto según tu lista
-                  itemBuilder: (BuildContext context, int index) {
-                    return MiniTarjeta(
-                      urlImagen:
-                          'https://img.asmedia.epimg.net/resizer/v2/2VYSIIZKZNBWJBGDGKHVP2SR7U.jpg?auth=7daff22f993bb1b1c13b1e70bf3edcecad80e4d5d78e9636faa2b040bd872713&width=1200&height=1200&smart=true',
-                      titulo: 'Grupo: 2024.2',
-                      subtitulo: 'Futbol',
-                      indicador: '6/20',
-                      indicadorEstado: 'activo',
-                      ruta: AppRutas.grupo,
-                    );
-                  },
-                ),
+                listaGrupos(),
                 Container(
                     margin: EdgeInsets.symmetric(vertical: 10),
                     child: OutlinedButton(
@@ -71,7 +55,7 @@ class Curso extends StatelessWidget {
               ],
             )),
       ],
-    ));
+    )));
   }
 
 //muestra la informacion del curso
@@ -123,6 +107,25 @@ class Curso extends StatelessWidget {
 
     return Stack(
       children: [contenedor, Positioned(top: 30, right: 8, child: EditIcon())],
+    );
+  }
+
+  Widget listaGrupos() {
+    return ListView.builder(
+      shrinkWrap: true, // Ajusta el tamaño de la lista al contenido
+      physics: const NeverScrollableScrollPhysics(), // Desactiva scroll interno
+      itemCount: 20, // Cambia esto según tu lista
+      itemBuilder: (BuildContext context, int index) {
+        return MiniTarjeta(
+          urlImagen:
+              'https://img.asmedia.epimg.net/resizer/v2/2VYSIIZKZNBWJBGDGKHVP2SR7U.jpg?auth=7daff22f993bb1b1c13b1e70bf3edcecad80e4d5d78e9636faa2b040bd872713&width=1200&height=1200&smart=true',
+          titulo: 'Grupo: 2024.2',
+          subtitulo: 'Futbol',
+          indicador: '6/20',
+          indicadorEstado: 'activo',
+          ruta: AppRutas.grupo,
+        );
+      },
     );
   }
 }
