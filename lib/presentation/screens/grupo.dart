@@ -86,7 +86,17 @@ class Grupo extends StatelessWidget {
             Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: Text('Alumnos', style: Tipografia.h6())),
-            CampoBusqueda(leyenda: 'buscar alumno...'),
+            Container(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Agregar alumno',
+                  style: Tipografia.leyendaNegrita(color: ColorTheme.neutral),
+                ),
+                CampoBusqueda(leyenda: 'buscar alumno...')
+              ],
+            )),
             Container(
                 margin: EdgeInsets.symmetric(vertical: 15),
                 child: ListView.builder(

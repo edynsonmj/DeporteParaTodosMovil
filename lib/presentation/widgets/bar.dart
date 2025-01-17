@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movil/core/theme/color_tema.dart';
+import 'package:movil/core/theme/tipografia.dart';
 
 class Bar extends StatelessWidget implements PreferredSizeWidget {
   String title;
@@ -7,7 +9,7 @@ class Bar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title),
+      title: Text(title, style: Tipografia.h5(color: ColorTheme.primary)),
       centerTitle: true,
     );
   }
