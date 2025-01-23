@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 class ImagenModelo {
@@ -22,5 +23,10 @@ class ImagenModelo {
         tipoArchivo: json['tipoArchivo'],
         longitud: json['longitud'],
         datos: json['datos']);
+  }
+
+  //convierte retorna el parametro datos en Uint8List, tipo de dato util para manejo de imagenes
+  Uint8List convertirDeBase64() {
+    return Base64Decoder().convert(datos);
   }
 }

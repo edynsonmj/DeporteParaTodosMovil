@@ -57,7 +57,8 @@ class _CategoriasViewState extends State<CategoriasView> {
                       atrTitulo: categoria.titulo,
                       atrDescripcion: categoria.descripcion,
                       atrRutaTarjeta: AppRutas.cursos,
-                      atrRutaEdicion: AppRutas.curso),
+                      atrRutaEdicion: AppRutas.curso,
+                      atrDatosImagen: categoria.imagen?.datos),
                 ],
               );
             }));

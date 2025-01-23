@@ -1,9 +1,11 @@
+import 'dart:typed_data';
+
 class ImagenEntidad {
   final int? id;
   final String nombre;
   final String tipoArchivo;
   final int longitud;
-  final String datos;
+  final Uint8List datos;
 
   ImagenEntidad(
       {this.id,

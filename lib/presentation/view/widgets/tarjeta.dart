@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:movil/config/theme/color_tema.dart';
 import 'package:movil/config/theme/tipografia.dart';
@@ -7,6 +9,7 @@ import 'package:movil/presentation/view/widgets/edit_icon.dart';
 //TODO: definir imagen por defecto para la imagen
 ///Widget sin estado que muestra una tarjeta con imagen e informacion
 class Tarjeta extends StatelessWidget {
+  Uint8List? atrDatosImagen;
   String? atrUrlImagen;
   String? atrTitulo;
   String? atrDescripcion;
@@ -19,6 +22,7 @@ class Tarjeta extends StatelessWidget {
   Tarjeta(
       {super.key,
       //la url de la imagen no puede ser nula, pero si vacia, en cuyo caso tomara el valor por defecto
+      this.atrDatosImagen,
       this.atrUrlImagen = '',
       this.atrTitulo,
       this.atrDescripcion,
@@ -62,7 +66,8 @@ class Tarjeta extends StatelessWidget {
       //el contenido de la tarjeta se organizara en una columna
       child: Column(
         children: [
-          if (atrUrlImagen != null) imagen(context, dimension),
+          //if (atrUrlImagen != null) imagen(context, dimension),
+          imagen(context, dimension),
           titulo(),
           //notese que se hacen las validaciones previo a pasar los datos, para no tener errores de null
           if (atrInfo2 != null && atrInfo1 != null) info(atrInfo1!, atrInfo2!),
@@ -83,22 +88,18 @@ class Tarjeta extends StatelessWidget {
     return ClipRRect(
       //border redondeador en la parte superior
       borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-      child: Image.network(
-        atrUrlImagen!,
-        fit: BoxFit.cover,
-        loadingBuilder: (context, child, loadingProgress) {
-          if (loadingProgress == null) return child;
-          return Center(
-              child: CircularProgressIndicator(
-            value: loadingProgress.expectedTotalBytes != null
-                ? loadingProgress.cumulativeBytesLoaded /
-                    (loadingProgress.expectedTotalBytes ?? 1)
-                : null,
-          ));
-        },
-        errorBuilder: (context, error, stackTrace) =>
-            Image.asset('assets/images/1.jpg'),
-      ),
+
+      child: atrDatosImagen != null
+          ? Image.memory(
+              atrDatosImagen!,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) =>
+                  Image.asset('assets/images/1.jpg'),
+            )
+          : Image.asset(
+              'assets/images/1.jpg',
+              fit: BoxFit.cover,
+            ),
     );
   }
 

@@ -1,4 +1,6 @@
 //TODO: construir contrato (interface) que sea implementado por un repositorio
+import 'dart:typed_data';
+
 import 'package:movil/data/models/imagenModelo.dart';
 import 'package:movil/data/sources/remote/mock/CategoriaServicio.dart';
 import 'package:movil/domain/entities/categoriaEntidad.dart';
@@ -24,8 +26,8 @@ class CategoriaRepositorio {
                     nombre: modelo.imagen!.nombre,
                     tipoArchivo: modelo.imagen!.tipoArchivo,
                     longitud: modelo.imagen!.longitud,
-                    datos: modelo.imagen!.datos))
-                //si es nula asignar null
+                    //los datos de la imagen se convierten a un tipo de dato manejable en flutter
+                    datos: modelo.imagen!.convertirDeBase64()))
                 : null))
         .toList();
   }
