@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movil/core/routes/app_rutas.dart';
-import 'package:movil/core/theme/color_tema.dart';
-import 'package:movil/presentation/widgets/bar.dart';
-import 'package:movil/presentation/widgets/tarjeta.dart';
+import 'package:movil/config/routes/app_rutas.dart';
+import 'package:movil/config/theme/color_tema.dart';
+import 'package:movil/presentation/view/widgets/bar.dart';
+import 'package:movil/presentation/view/widgets/tarjeta.dart';
 
 class Cursos extends StatelessWidget {
   const Cursos({super.key});

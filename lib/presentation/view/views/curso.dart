@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:movil/core/routes/app_rutas.dart';
-import 'package:movil/core/theme/color_tema.dart';
-import 'package:movil/core/theme/tipografia.dart';
-import 'package:movil/presentation/widgets/bar.dart';
-import 'package:movil/presentation/widgets/edit_icon.dart';
-import 'package:movil/presentation/widgets/encabezadoImagen.dart';
-import 'package:movil/presentation/widgets/mini_tarjeta.dart';
+import 'package:movil/config/routes/app_rutas.dart';
+import 'package:movil/config/theme/color_tema.dart';
+import 'package:movil/config/theme/tipografia.dart';
+import 'package:movil/presentation/view/widgets/bar.dart';
+import 'package:movil/presentation/view/widgets/edit_icon.dart';
+import 'package:movil/presentation/view/widgets/encabezadoImagen.dart';
+import 'package:movil/presentation/view/widgets/mini_tarjeta.dart';
 
 class Curso extends StatelessWidget {
   const Curso({super.key});

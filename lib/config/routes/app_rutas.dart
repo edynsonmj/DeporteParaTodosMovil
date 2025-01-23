@@ -5,4 +5,5 @@ class AppRutas {
   static const String cursos = '/cursos';
   static const String curso = '/curso';
   static const String grupo = '/grupo';
+  static const String categorias = '/categorias';
 }

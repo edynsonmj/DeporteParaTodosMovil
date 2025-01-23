@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movil/core/theme/color_tema.dart';
-import 'package:movil/core/theme/tipografia.dart';
+import 'package:movil/config/theme/color_tema.dart';
+import 'package:movil/config/theme/tipografia.dart';
 
 class Bar extends StatelessWidget implements PreferredSizeWidget {
   String title;

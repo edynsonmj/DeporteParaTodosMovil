@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movil/core/theme/color_tema.dart';
-import 'package:movil/core/theme/tipografia.dart';
-import 'package:movil/presentation/widgets/edit_icon.dart';
+import 'package:movil/config/theme/color_tema.dart';
+import 'package:movil/config/theme/tipografia.dart';
+import 'package:movil/presentation/view/widgets/edit_icon.dart';
 
 //TODO: establecer tamaño predeterminado para el contenedor de la imagen
 //TODO: definir imagen por defecto para la imagen
