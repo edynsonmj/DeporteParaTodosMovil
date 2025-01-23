@@ -18,20 +18,25 @@ class _CategoriasViewState extends State<CategoriasView> {
   @override
   void initState() {
     super.initState(); // Llamar a fetchCategories al iniciar la vista
-    final categoriaviewmodel =
-        Provider.of<CategoriaViewModel>(context, listen: false);
-    categoriaviewmodel.fetchCategorias();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final categoriaViewModel =
+          Provider.of<CategoriaViewModel>(context, listen: false);
+      categoriaViewModel.fetchCategorias();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: Bar(title: 'Categorias'), body: contenedorSeguro());
+    final categoriaViewModel = Provider.of<CategoriaViewModel>(context);
+    return Scaffold(
+        appBar: Bar(title: 'Categorias'),
+        body: contenedorSeguro(categoriaViewModel));
   }
 
-  Widget contenedorSeguro() {
+  Widget contenedorSeguro(CategoriaViewModel viewModel) {
     return SafeArea(
         child: ListView.builder(
-            itemCount: 3,
+            itemCount: viewModel.categorias!.length,
             itemBuilder: (context, index) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
