@@ -1,18 +1,20 @@
 //TODO: construir contrato (interface) que sea implementado por un repositorio
 import 'dart:typed_data';
 
+import 'package:movil/data/api/cliente/categoriaClienteAbstracto.dart';
 import 'package:movil/data/models/imagenModelo.dart';
-import 'package:movil/data/sources/remote/mock/CategoriaServicio.dart';
+import 'package:movil/data/api/remoto/categoriaCliente.dart';
+import 'package:movil/data/api/fabrica/clienteFabricaAbstracta.dart';
 import 'package:movil/domain/entities/categoriaEntidad.dart';
 import 'package:movil/domain/entities/imagenEntidad.dart';
 
 class CategoriaRepositorio {
-  final CategoriaServicio servicio;
-  CategoriaRepositorio(this.servicio);
+  CategoriaClienteAbstracto cliente;
+  CategoriaRepositorio({required this.cliente});
 
   Future<List<CategoriaEntidad>> obtenerCategorias() async {
     //obtener lista del servicio
-    final categoriasModelo = await servicio.obtenerCategorias();
+    final categoriasModelo = await cliente.obtenerCategorias();
     //retornar y mapear de modelo a entidad
     return categoriasModelo
         .map((modelo) => CategoriaEntidad(

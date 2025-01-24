@@ -1,16 +1,18 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
+import 'package:movil/data/api/cliente/categoriaClienteAbstracto.dart';
 import 'package:movil/data/models/categoriaModelo.dart';
+import 'package:movil/config/configServicio.dart';
 
-class CategoriaServicio {
-  final _dio = Dio();
+class CategoriaCliente implements CategoriaClienteAbstracto {
+  final _dio = Dio(BaseOptions(baseUrl: ConfigServicio().obtenerBaseApi()));
 
+  @override
   Future<List<categoriaModelo>> obtenerCategorias() async {
     //intentar hacer la peticion
     try {
-      final response =
-          await _dio.get('http://192.168.100.71:8082/api/categorias');
+      print(_dio.options.baseUrl);
+      final response = await _dio.get('/categorias');
+      print(response.realUri);
 
       //se espera codigo 200 para la peticion, si no manejar error
       if (response.statusCode != 200) {
@@ -28,16 +30,17 @@ class CategoriaServicio {
 
       return categorias;
     } on DioException catch (dioError) {
-      print('Excepcion dio: ${dioError.message}');
+      print('>>>>>>>>>>>>>Excepcion dio: ${dioError.message}');
       if (dioError.type == DioExceptionType.connectionTimeout) {
-        throw Exception('Connection Timeout Exception');
+        throw Exception('>>>>>>>>>>>>>>>>Connection Timeout Exception');
       } else if (dioError.type == DioExceptionType.receiveTimeout) {
-        throw Exception('Receive Timeout Exception');
+        throw Exception('>>>>>>>>>>>>>>>>>Receive Timeout Exception');
       } else if (dioError.type == DioExceptionType.badResponse) {
         throw Exception(
-            'Received invalid status code: ${dioError.response?.statusCode}');
+            '>>>>>>>>>>>>>>>>>>>Received invalid status code: ${dioError.response?.statusCode}');
       } else {
-        throw Exception('Unexpected error: ${dioError.message}');
+        throw Exception(
+            '>>>>>>>>>>>>>>>>Unexpected error: ${dioError.message}');
       }
     } catch (e) {
       //TODO: manejar cualquier otro error, si no se ha cargado la informacion no se puede continuar con la aplicacion, sugerir soporte tecnico

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movil/config/routes/app_rutas.dart';
 import 'package:movil/config/routes/route_generator.dart';
 import 'package:movil/config/theme/app_tema.dart';
-import 'package:movil/domain/usercases/obtenerCategoria.dart';
+import 'package:movil/domain/servicios/servicioCategoria.dart';
 import 'package:movil/presentation/viewmodels/categoriaViewModel.dart';
 import 'package:provider/provider.dart';
 
@@ -18,13 +18,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(
-              create: (_) => CategoriaViewModel(ObtenerCategorias()))
+          ChangeNotifierProvider(create: (_) => CategoriaViewModel())
         ],
         child: MaterialApp(
           title: 'Deporte para todos',
           theme: AppTheme().theme(),
-          initialRoute: AppRutas.categorias,
+          initialRoute: AppRutas.page1,
           onGenerateRoute: generateRoute,
         ));
   }

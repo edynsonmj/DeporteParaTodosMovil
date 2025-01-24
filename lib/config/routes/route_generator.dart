@@ -26,6 +26,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => CategoriasView());
 
     default:
-      return MaterialPageRoute(builder: (_) => const Page1());
+      return MaterialPageRoute(builder: (_) => Page1());
   }
 }
