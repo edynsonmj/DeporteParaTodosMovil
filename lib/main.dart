@@ -4,6 +4,7 @@ import 'package:movil/config/routes/route_generator.dart';
 import 'package:movil/config/theme/app_tema.dart';
 import 'package:movil/domain/servicios/servicioCategoria.dart';
 import 'package:movil/presentation/viewmodels/categoriaViewModel.dart';
+import 'package:movil/presentation/viewmodels/cursosViewModel.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => CategoriaViewModel())
+          ChangeNotifierProvider(create: (_) => CategoriaViewModel()),
+          ChangeNotifierProvider(create: (_) => CursosViewModel())
         ],
         child: MaterialApp(
           title: 'Deporte para todos',

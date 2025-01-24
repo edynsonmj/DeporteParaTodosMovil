@@ -14,7 +14,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => const Page2(args));
 
     case AppRutas.cursos:
-      return MaterialPageRoute(builder: (_) => Cursos());
+      return MaterialPageRoute(builder: (_) => CursosView());
 
     case AppRutas.curso:
       return MaterialPageRoute(builder: (_) => Curso());

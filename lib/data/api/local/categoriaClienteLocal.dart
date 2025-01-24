@@ -10,12 +10,12 @@ class CategoriaClienteLocal implements CategoriaClienteAbstracto {
             "Nisi Lorem aliquip quis consequat. Excepteur laborum qui sit sunt proident. Labore laboris id veniam pariatur excepteur qui. Sit elit qui irure irure commodo consequat fugiat minim ea proident. Dolore incididunt enim cillum ad aliquip esse anim mollit ipsum occaecat officia fugiat enim. Ut aute dolore mollit dolore duis elit proident quis officia Lorem minim. Labore laboris reprehenderit occaecat aliqua sit ullamco ad est.",
         imagen: null),
     categoriaModelo(
-        titulo: "Seleccionado",
+        titulo: "Semillero",
         descripcion:
             "Nisi Lorem aliquip quis consequat. Excepteur laborum qui sit sunt proident. Labore laboris id veniam pariatur excepteur qui. Sit elit qui irure irure commodo consequat fugiat minim ea proident. Dolore incididunt enim cillum ad aliquip esse anim mollit ipsum occaecat officia fugiat enim. Ut aute dolore mollit dolore duis elit proident quis officia Lorem minim. Labore laboris reprehenderit occaecat aliqua sit ullamco ad est.",
         imagen: null),
     categoriaModelo(
-        titulo: "Seleccionado",
+        titulo: "Recreativo",
         descripcion:
             "Nisi Lorem aliquip quis consequat. Excepteur laborum qui sit sunt proident. Labore laboris id veniam pariatur excepteur qui. Sit elit qui irure irure commodo consequat fugiat minim ea proident. Dolore incididunt enim cillum ad aliquip esse anim mollit ipsum occaecat officia fugiat enim. Ut aute dolore mollit dolore duis elit proident quis officia Lorem minim. Labore laboris reprehenderit occaecat aliqua sit ullamco ad est.",
         imagen: null)
