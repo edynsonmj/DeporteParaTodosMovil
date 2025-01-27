@@ -5,8 +5,6 @@ import 'package:movil/config/theme/color_tema.dart';
 import 'package:movil/config/theme/tipografia.dart';
 import 'package:movil/presentation/view/widgets/edit_icon.dart';
 
-//TODO: establecer tamaño predeterminado para el contenedor de la imagen
-//TODO: definir imagen por defecto para la imagen
 ///Widget sin estado que muestra una tarjeta con imagen e informacion
 class Tarjeta extends StatelessWidget {
   Uint8List? atrDatosImagen;
@@ -88,17 +86,23 @@ class Tarjeta extends StatelessWidget {
     return ClipRRect(
       //border redondeador en la parte superior
       borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-
       child: atrDatosImagen != null
-          ? Image.memory(
-              atrDatosImagen!,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) =>
-                  Image.asset('assets/images/1.jpg'),
-            )
-          : Image.asset(
-              'assets/images/1.jpg',
-              fit: BoxFit.cover,
+          ? SizedBox(
+              height: 200,
+              width: double.infinity,
+              child: Image.memory(
+                atrDatosImagen!,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                    Image.asset('assets/images/1.jpg'),
+              ))
+          : SizedBox(
+              height: 200,
+              width: double.infinity,
+              child: Image.asset(
+                'assets/images/1.jpg',
+                fit: BoxFit.cover,
+              ),
             ),
     );
   }

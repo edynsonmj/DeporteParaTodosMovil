@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movil/config/routes/app_rutas.dart';
-import 'package:movil/config/theme/color_tema.dart';
 import 'package:movil/domain/entities/cursoEntidad.dart';
 import 'package:movil/presentation/view/widgets/bar.dart';
 import 'package:movil/presentation/view/widgets/tarjeta.dart';
@@ -17,6 +16,39 @@ class CursosView extends StatefulWidget {
 }
 
 class _CursosViewState extends State<CursosView> {
+  CursosViewModel cursosViewModel = CursosViewModel();
+  final ScrollController _scrollController = ScrollController();
+  String? _cursoSeleccionado;
+  final double _alturaTarjeta = 0.0;
+
+  //libera recursos cuando se deshaga el widget
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  //dirige el scroll de la lista cursos a un curso seleccionado
+  void _moverScrollACurso(String cursoNombre) {
+    //obtenemos el indice segun el nombre del curso suministrado
+    final index = cursosViewModel.getListaCursos!
+        .indexWhere((curso) => curso.nombreCurso == cursoNombre);
+    if (index != -1) {
+      //garantizamos que se haya cargado la vista para evitar errores
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        //verificamos que el scroll posea un cliente (una lista) suscrita
+        if (_scrollController.hasClients) {
+          _scrollController.animateTo(
+            // Ajusta este valor según la altura de tarjeta
+            index * 400,
+            duration: Duration(seconds: 1),
+            curve: Curves.easeInOut,
+          );
+        }
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -32,10 +64,11 @@ class _CursosViewState extends State<CursosView> {
 
   @override
   Widget build(BuildContext context) {
-    final cursosViewModel = Provider.of<CursosViewModel>(context);
+    final viewModel = Provider.of<CursosViewModel>(context);
+    cursosViewModel = viewModel;
     return Scaffold(
         appBar: Bar(title: 'Cursos'),
-        body: contenedorSeguro(context, cursosViewModel));
+        body: contenedorSeguro(context, viewModel));
   }
 
   ///Contenido de la vista, donde se evita que los elementos se sobrepongan sobre elementos de la interfaz del dispositivo
@@ -49,16 +82,21 @@ class _CursosViewState extends State<CursosView> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            filtro(),
+            filtro(viewModel),
             TextButton(onPressed: () {}, child: Text('INSCRIPCIONES'))
           ],
         ));
+    Widget ajustes = OutlinedButton.icon(
+      onPressed: () {},
+      label: Text('AJUSTES'),
+      icon: Icon(Icons.add),
+    );
     //elementos de la vista sobre las cuales se puede hacer scroll
     Expanded listaItems = componenteLista(orientacion, viewModel);
     //encapsulo todo en safeArea
     return SafeArea(
         child: Column(
-      children: [contenidoEstatico, listaItems],
+      children: [contenidoEstatico, ajustes, listaItems],
     ));
   }
 
@@ -66,20 +104,10 @@ class _CursosViewState extends State<CursosView> {
     return Expanded(
       child: Center(
           child: ListView.builder(
+        controller: _scrollController,
         itemCount: viewModel.getListaCursos?.length ?? 0,
         itemBuilder: (BuildContext context, int index) {
           final CursoEntidad curso = viewModel.getListaCursos![index];
-          if (index == 0) {
-            return Padding(
-                padding: orientacion == Orientation.portrait
-                    ? EdgeInsets.symmetric(horizontal: 30)
-                    : EdgeInsets.symmetric(horizontal: 160),
-                child: OutlinedButton.icon(
-                  onPressed: () {},
-                  label: Text('AJUSTES'),
-                  icon: Icon(Icons.add),
-                ));
-          }
           return Center(
               child: Tarjeta(
             atrDatosImagen: curso.imagen?.datos,
@@ -96,129 +124,19 @@ class _CursosViewState extends State<CursosView> {
     );
   }
 
-  DropdownMenu filtro() {
-    String? opcion;
+  DropdownMenu filtro(CursosViewModel viewModel) {
     DropdownMenu menu = DropdownMenu(
-      initialSelection: 'opcion 1',
+      hintText: 'desplazar a',
       textAlign: TextAlign.center,
       width: 155,
-      dropdownMenuEntries: [
-        DropdownMenuEntry(value: 'opcion 1', label: 'todos'),
-        DropdownMenuEntry(value: 'opcion 2', label: 'seleccionado'),
-        DropdownMenuEntry(value: 'opcion 3', label: 'recreativo')
-      ],
+      dropdownMenuEntries: viewModel.getListaEntradas,
       onSelected: (seleccion) {
-        print(seleccion.toString());
+        setState(() {
+          _cursoSeleccionado = seleccion;
+        });
+        _moverScrollACurso(seleccion);
       },
     );
     return menu;
-    /*return DropdownButton(
-        value: opcion,
-        hint: const Text('FILTRO'),
-        onChanged: (nuevoValor) {
-          opcion = nuevoValor;
-          //TODO: actualizar la lista segun seleccion
-        },
-        items: const [
-          DropdownMenuItem(value: 'opcion 1', child: Text('todos')),
-          DropdownMenuItem(value: 'opcion 2', child: Text('seleccionado')),
-          DropdownMenuItem(value: 'opcion 3', child: Text('semillero'))
-        ]);*/
-  }
-}
-
-class Cursos extends StatelessWidget {
-  const Cursos({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: Bar(title: 'Cursos'), body: contenedorSeguro(context));
-  }
-
-  ///Contenido de la vista, donde se evita que los elementos se sobrepongan sobre elementos de la interfaz del dispositivo
-  SafeArea contenedorSeguro(BuildContext context) {
-    //orientacion del dispositivo
-    final Orientation orientacion = MediaQuery.of(context).orientation;
-    //primera seccion de la pantalla
-    Container contenidoEstatico = Container(
-        margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            filtro(),
-            TextButton(onPressed: () {}, child: Text('INSCRIPCIONES'))
-          ],
-        ));
-    //elementos de la vista sobre las cuales se puede hacer scroll
-    Expanded listaItems = componenteLista(orientacion);
-    //encapsulo todo en safeArea
-    return SafeArea(
-        child: Column(
-      children: [contenidoEstatico, listaItems],
-    ));
-  }
-
-  Expanded componenteLista(Orientation orientacion) {
-    return Expanded(
-      child: Center(
-          child: ListView.builder(
-        itemCount: 6,
-        itemBuilder: (BuildContext context, int index) {
-          if (index == 0) {
-            return Padding(
-                padding: orientacion == Orientation.portrait
-                    ? EdgeInsets.symmetric(horizontal: 30)
-                    : EdgeInsets.symmetric(horizontal: 160),
-                child: OutlinedButton.icon(
-                  onPressed: () {},
-                  label: Text('AJUSTES'),
-                  icon: Icon(Icons.add),
-                ));
-          }
-          return Center(
-              child: Tarjeta(
-            atrRutaTarjeta: AppRutas.curso,
-            atrRutaEdicion: AppRutas.curso,
-            atrTitulo: 'curso $index',
-            atrInfo1: 'deporte $index',
-            atrInfo2: 'categoria $index',
-            atrDescripcion:
-                'Id anim dolor cillum est aliquip ipsum laboris pariatur id. Fugiat anim ad velit minim id irure Lorem fugiat aute eu. Elit esse anim ad dolore enim sunt non dolore veniam tempor voluptate. Dolore amet excepteur deserunt cillum exercitation dolor Lorem officia ad magna officia consequat cupidatat Lorem. Sint voluptate voluptate ut et consequat quis culpa id officia cillum. In in dolor amet consectetur ut laborum excepteur aliqua. Quis consequat ullamco nisi fugiat ipsum minim sint tempor consequat in nulla.',
-            atrInfoPie: '${(index + 1) * 5} alumnos',
-          ));
-        },
-      )),
-    );
-  }
-
-  DropdownMenu filtro() {
-    String? opcion;
-    DropdownMenu menu = DropdownMenu(
-      initialSelection: 'opcion 1',
-      textAlign: TextAlign.center,
-      width: 155,
-      dropdownMenuEntries: [
-        DropdownMenuEntry(value: 'opcion 1', label: 'todos'),
-        DropdownMenuEntry(value: 'opcion 2', label: 'seleccionado'),
-        DropdownMenuEntry(value: 'opcion 3', label: 'recreativo')
-      ],
-      onSelected: (seleccion) {
-        print(seleccion.toString());
-      },
-    );
-    return menu;
-    /*return DropdownButton(
-        value: opcion,
-        hint: const Text('FILTRO'),
-        onChanged: (nuevoValor) {
-          opcion = nuevoValor;
-          //TODO: actualizar la lista segun seleccion
-        },
-        items: const [
-          DropdownMenuItem(value: 'opcion 1', child: Text('todos')),
-          DropdownMenuItem(value: 'opcion 2', child: Text('seleccionado')),
-          DropdownMenuItem(value: 'opcion 3', child: Text('semillero'))
-        ]);*/
   }
 }
