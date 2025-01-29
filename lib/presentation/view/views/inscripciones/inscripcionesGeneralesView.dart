@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movil/config/theme/color_tema.dart';
 import 'package:movil/config/theme/tipografia.dart';
-import 'package:movil/domain/entities/categoriaEntidad.dart';
 import 'package:movil/presentation/view/widgets/bar.dart';
-import 'package:movil/presentation/view/widgets/mini_tarjeta.dart';
-import 'package:movil/presentation/view/widgets/tarjeta.dart';
 import 'package:movil/presentation/viewmodels/categoriaViewModel.dart';
 import 'package:provider/provider.dart';
 
@@ -52,8 +49,8 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
 
   Widget filtro() {
     DropdownMenu menu = DropdownMenu(
-      hintText: 'seleccione...',
-      helperText: 'Categoria seleccionada',
+      hintText: 'sin seleccion',
+      helperText: 'seleccion una categoria',
       textAlign: TextAlign.center,
       dropdownMenuEntries: categoriaViewModel.getListaEntradas,
       onSelected: (seleccion) {
@@ -91,13 +88,21 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
       child: Text('Abrir'),
     );
     Widget cerrar = OutlinedButton(
-        onPressed: () {},
+        onPressed: () {
+          if (_categoriaSeleccionada != null) {
+            _confirmarCerrar(context, _categoriaSeleccionada!);
+          }
+        },
         style: OutlinedButton.styleFrom(
             foregroundColor: ColorTheme.secondary,
             side: BorderSide(color: ColorTheme.secondary)),
         child: Text('Cerrar'));
     Widget programar = OutlinedButton(
-        onPressed: () {},
+        onPressed: () {
+          if (_categoriaSeleccionada != null) {
+            _mostrarSelectorFecha(context);
+          }
+        },
         style: OutlinedButton.styleFrom(
             foregroundColor: ColorTheme.tertiary,
             side: BorderSide(color: ColorTheme.tertiary)),
@@ -132,14 +137,24 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
           return AlertDialog(
             title: Text('Abrir Inscripciones '),
             content: Text(
-                '¿Esta seguro de abrir las inscripciones de todos los grupos para la categoria $categoria?'),
+                '¿Esta seguro de abrir las inscripciones de todos los grupos para la categoria $categoria?',
+                textAlign: TextAlign.center),
             actions: [
-              FilledButton(onPressed: () {}, child: Text('Confirmar')),
-              FilledButton(
-                  onPressed: () {},
+              TextButton(
+                  onPressed: () {
+                    //TODO: llamar funcion que ejecute la accion de confirmar
+                    //cierra el alert
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Confirmar')),
+              TextButton(
+                  onPressed: () {
+                    //cierra el dialogo
+                    Navigator.of(context).pop();
+                  },
                   child: Text('Cancelar'),
                   style: FilledButton.styleFrom(
-                      backgroundColor: ColorTheme.secondary))
+                      foregroundColor: ColorTheme.secondary))
             ],
           );
         });
@@ -152,14 +167,72 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
           return AlertDialog(
             title: Text('Cerrar Inscripciones '),
             content: Text(
-                '¿Esta seguro de cerrar las inscripciones de todos los grupos para la categoria $categoria?'),
+              '¿Esta seguro de cerrar las inscripciones de todos los grupos para la categoria $categoria?',
+              textAlign: TextAlign.center,
+            ),
             actions: [
-              FilledButton(onPressed: () {}, child: Text('Confirmar')),
-              FilledButton(
-                  onPressed: () {},
-                  child: Text('Cancelar'),
-                  style: FilledButton.styleFrom(
-                      backgroundColor: ColorTheme.secondary))
+              TextButton(
+                  onPressed: () {
+                    //TODO: llamar funcion para ejecutar accion
+                    //cierra el alert
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Confirmar')),
+              TextButton(
+                onPressed: () {
+                  //cierra el dialogo
+                  Navigator.of(context).pop();
+                },
+                style: FilledButton.styleFrom(
+                    foregroundColor: ColorTheme.secondary),
+                child: Text('Cancelar'),
+              )
+            ],
+          );
+        });
+  }
+
+  void _mostrarSelectorFecha(BuildContext context) async {
+    DateTime? fechaSeleccionada = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2100),
+      helpText: 'Grupos de $_categoriaSeleccionada abren en...',
+    );
+
+    if (fechaSeleccionada != null) {
+      _confirmarProgramacion(context, fechaSeleccionada);
+    }
+  }
+
+  void _confirmarProgramacion(BuildContext context, DateTime fechaSeccionada) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Programar'),
+            content: Text(
+              '¿Esta seguro de abrir las inscripciones de todos los grupos de $_categoriaSeleccionada en la fecha ${fechaSeccionada.day}/${fechaSeccionada.month}/${fechaSeccionada.year}?',
+              textAlign: TextAlign.center,
+            ),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    //TODO: llamar funcion para ejecutar accion
+                    //cierra el alert
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Confirmar')),
+              TextButton(
+                onPressed: () {
+                  //cierra el dialogo
+                  Navigator.of(context).pop();
+                },
+                style: FilledButton.styleFrom(
+                    foregroundColor: ColorTheme.secondary),
+                child: Text('Cancelar'),
+              )
             ],
           );
         });
