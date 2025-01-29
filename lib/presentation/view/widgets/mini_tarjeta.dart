@@ -9,10 +9,16 @@ class MiniTarjeta extends StatelessWidget {
   final double margenDerecho;
   final String titulo;
   final String subtitulo;
+
+  ///Indicador textual en la parte superior derecha
   String? indicador;
+
+  ///Indicador chip en la parte inferior derecha
   String? indicadorEstado;
   String? urlImagen;
   String? ruta;
+
+  ///habilitar boton de cierre en la parte derecha
   bool botonCierre;
 
   MiniTarjeta({
@@ -37,27 +43,30 @@ class MiniTarjeta extends StatelessWidget {
   }
 
   Widget tarjeta(BuildContext context, String? ruta) {
+    final dimension = MediaQuery.of(context).size;
     Card tarjeta = Card(
       elevation: 4,
       margin: EdgeInsets.fromLTRB(
           margenIzquierdo, margenSuperior, margenDerecho, margenInferior),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: InkWell(
-          child: Container(
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              children: [
-                if (urlImagen != null) campoImagen(),
-                campoInformacion(context),
-                if (botonCierre) iconoAccion()
-              ],
-            ),
-          ),
-          onTap: () {
-            if (ruta != null) {
-              Navigator.pushNamed(context, ruta);
-            }
-          }),
+      child: SizedBox(
+          width: dimension.width * 0.9,
+          child: InkWell(
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  children: [
+                    if (urlImagen != null) campoImagen(),
+                    campoInformacion(context),
+                    if (botonCierre) iconoAccion()
+                  ],
+                ),
+              ),
+              onTap: () {
+                if (ruta != null) {
+                  Navigator.pushNamed(context, ruta);
+                }
+              })),
     );
 
     return tarjeta;

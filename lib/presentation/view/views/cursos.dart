@@ -83,7 +83,11 @@ class _CursosViewState extends State<CursosView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             filtro(viewModel),
-            TextButton(onPressed: () {}, child: Text('INSCRIPCIONES'))
+            TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, AppRutas.InscripcionesGenerales);
+                },
+                child: Text('INSCRIPCIONES'))
           ],
         ));
     Widget ajustes = OutlinedButton.icon(
