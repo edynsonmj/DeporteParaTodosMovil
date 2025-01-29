@@ -19,6 +19,7 @@ class InscripcionesGeneralesView extends StatefulWidget {
 class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
   //estado
   CategoriaViewModel categoriaViewModel = CategoriaViewModel();
+  String? _categoriaSeleccionada;
 
   @override
   void initState() {
@@ -55,7 +56,11 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
       helperText: 'Categoria seleccionada',
       textAlign: TextAlign.center,
       dropdownMenuEntries: categoriaViewModel.getListaEntradas,
-      onSelected: (seleccion) {},
+      onSelected: (seleccion) {
+        setState(() {
+          _categoriaSeleccionada = seleccion;
+        });
+      },
     );
     return Container(margin: EdgeInsets.symmetric(vertical: 10), child: menu);
   }
@@ -78,7 +83,11 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
           style: Tipografia.cuerpo2()),
     );
     Widget abrir = OutlinedButton(
-      onPressed: () {},
+      onPressed: () {
+        if (_categoriaSeleccionada != null) {
+          _confirmarAbrir(context, _categoriaSeleccionada!);
+        }
+      },
       child: Text('Abrir'),
     );
     Widget cerrar = OutlinedButton(
@@ -116,12 +125,42 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
     );
   }
 
-  void _ventanaEmergente1(BuildContext context, String categoria) {
+  void _confirmarAbrir(BuildContext context, String categoria) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('Abrir Inscripciones '),
+            content: Text(
+                '¿Esta seguro de abrir las inscripciones de todos los grupos para la categoria $categoria?'),
+            actions: [
+              FilledButton(onPressed: () {}, child: Text('Confirmar')),
+              FilledButton(
+                  onPressed: () {},
+                  child: Text('Cancelar'),
+                  style: FilledButton.styleFrom(
+                      backgroundColor: ColorTheme.secondary))
+            ],
+          );
+        });
+  }
+
+  void _confirmarCerrar(BuildContext context, String categoria) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Cerrar Inscripciones '),
+            content: Text(
+                '¿Esta seguro de cerrar las inscripciones de todos los grupos para la categoria $categoria?'),
+            actions: [
+              FilledButton(onPressed: () {}, child: Text('Confirmar')),
+              FilledButton(
+                  onPressed: () {},
+                  child: Text('Cancelar'),
+                  style: FilledButton.styleFrom(
+                      backgroundColor: ColorTheme.secondary))
+            ],
           );
         });
   }
