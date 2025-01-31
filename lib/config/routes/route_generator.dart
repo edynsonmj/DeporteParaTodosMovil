@@ -5,6 +5,7 @@ import 'package:movil/presentation/view/views/curso.dart';
 import 'package:movil/presentation/view/views/cursos.dart';
 import 'package:movil/presentation/view/views/grupo.dart';
 import 'package:movil/presentation/view/views/inscripciones/inscripcionesGeneralesView.dart';
+import 'package:movil/presentation/view/views/inscripciones/inscripcionesParticulares.dart';
 import 'package:movil/presentation/view/views/page1.dart';
 import 'package:movil/presentation/view/views/page2.dart';
 
@@ -28,6 +29,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case AppRutas.InscripcionesGenerales:
       return MaterialPageRoute(builder: (_) => InscripcionesGeneralesView());
+
+    case AppRutas.InscripcionesParticulares:
+      return MaterialPageRoute(builder: (_) => InscripcionesParticularesView());
 
     default:
       return MaterialPageRoute(builder: (_) => Page1());

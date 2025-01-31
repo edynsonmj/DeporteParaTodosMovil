@@ -1,88 +1,75 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:movil/config/theme/color_tema.dart';
 import 'package:movil/config/theme/tipografia.dart';
+import 'package:movil/presentation/view/widgets/avatar.dart';
 
 class MiniTarjeta extends StatelessWidget {
-  final double margenSuperior;
-  final double margenInferior;
-  final double margenIzquierdo;
-  final double margenDerecho;
-  final String titulo;
-  final String subtitulo;
+  final double atrMargerSuperior;
+  final double atrMargerInferior;
+  final double atrMargenIzquierdo;
+  final double atrMargenDerecho;
+  final String atrTitulo;
+  final String atrSubTitulo;
+
+  final Uint8List? atrDatosImagen;
 
   ///Indicador textual en la parte superior derecha
-  String? indicador;
+  String? atrIndicador;
 
   ///Indicador chip en la parte inferior derecha
-  String? indicadorEstado;
-  String? urlImagen;
-  String? ruta;
+  String? atrIndicadorEstado;
 
   ///habilitar boton de cierre en la parte derecha
-  bool botonCierre;
+  bool existeBotonCierre;
+  bool existeCampoImagen;
 
   MiniTarjeta({
     super.key,
-    required this.titulo,
-    required this.subtitulo,
-    this.ruta,
+    required this.atrTitulo,
+    required this.atrSubTitulo,
     //la url de la imagen no puede ser nula, pero si vacia, en cuyo caso tomara el valor por defecto
-    this.urlImagen = '',
-    this.indicador,
-    this.indicadorEstado,
-    this.botonCierre = false,
-    this.margenSuperior = 5,
-    this.margenInferior = 5,
-    this.margenIzquierdo = 5,
-    this.margenDerecho = 5,
+    this.atrDatosImagen,
+    required this.existeCampoImagen,
+    this.atrIndicador,
+    this.atrIndicadorEstado,
+    this.existeBotonCierre = false,
+    this.atrMargerSuperior = 5,
+    this.atrMargerInferior = 5,
+    this.atrMargenIzquierdo = 5,
+    this.atrMargenDerecho = 5,
   });
 
   @override
   Widget build(BuildContext context) {
-    return tarjeta(context, ruta);
+    return tarjeta(context);
   }
 
-  Widget tarjeta(BuildContext context, String? ruta) {
+  Widget tarjeta(BuildContext context) {
     final dimension = MediaQuery.of(context).size;
     Card tarjeta = Card(
       elevation: 4,
-      margin: EdgeInsets.fromLTRB(
-          margenIzquierdo, margenSuperior, margenDerecho, margenInferior),
+      margin: EdgeInsets.fromLTRB(atrMargenIzquierdo, atrMargerSuperior,
+          atrMargenDerecho, atrMargerInferior),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: SizedBox(
-          width: dimension.width * 0.9,
-          child: InkWell(
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  children: [
-                    if (urlImagen != null) campoImagen(),
-                    campoInformacion(context),
-                    if (botonCierre) iconoAccion()
-                  ],
-                ),
-              ),
-              onTap: () {
-                if (ruta != null) {
-                  Navigator.pushNamed(context, ruta);
-                }
-              })),
+        width: dimension.width * 0.9,
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            children: [
+              if (existeCampoImagen)
+                Avatar(atrDimension: 60, atrDatosImagen: atrDatosImagen),
+              campoInformacion(context),
+              if (existeBotonCierre) iconoAccion()
+            ],
+          ),
+        ),
+      ),
     );
 
     return tarjeta;
-  }
-
-  Widget campoImagen() {
-    return Container(
-      width: 60,
-      height: 60,
-      margin: const EdgeInsets.fromLTRB(5, 0, 10, 0),
-      decoration: BoxDecoration(
-        border: Border.all(color: ColorTheme.primary, width: 2),
-        borderRadius: BorderRadius.circular(100),
-      ),
-      child: imagen(),
-    );
   }
 
   Widget campoInformacion(context) {
@@ -90,7 +77,7 @@ class MiniTarjeta extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         informacionTextual(),
-        if (indicador != null && indicador != null) indicadores(),
+        if (atrIndicador != null && atrIndicador != null) atrIndicadores(),
       ],
     );
     return Expanded(child: fila);
@@ -104,36 +91,14 @@ class MiniTarjeta extends StatelessWidget {
         icon: Icon(Icons.close));
   }
 
-  Widget imagen() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(100),
-      child: Image.network(
-        urlImagen!,
-        fit: BoxFit.cover,
-        loadingBuilder: (context, child, loadingProgress) {
-          if (loadingProgress == null) return child;
-          return Center(
-              child: CircularProgressIndicator(
-            value: loadingProgress.expectedTotalBytes != null
-                ? loadingProgress.cumulativeBytesLoaded /
-                    (loadingProgress.expectedTotalBytes ?? 1)
-                : null,
-          ));
-        },
-        errorBuilder: (context, error, stackTrace) =>
-            Image.asset('assets/images/1.jpg'),
-      ),
-    );
-  }
-
   Widget informacionTextual() {
     return Expanded(
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(titulo,
+        Text(atrTitulo,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: Tipografia.subtitulo1(color: ColorTheme.primary)),
-        Text(subtitulo,
+        Text(atrSubTitulo,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: Tipografia.cuerpo2())
@@ -141,13 +106,13 @@ class MiniTarjeta extends StatelessWidget {
     );
   }
 
-  Widget indicadores() {
+  Widget atrIndicadores() {
     return Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
       //antes de llamar se debe confirmar que los valores existen
-      Text(indicador!, style: Tipografia.cuerpo2(color: ColorTheme.neutral)),
+      Text(atrIndicador!, style: Tipografia.cuerpo2(color: ColorTheme.neutral)),
       Chip(
           label: Text(
-            indicadorEstado!,
+            atrIndicadorEstado!,
           ),
           labelPadding: EdgeInsets.all(0))
     ]);

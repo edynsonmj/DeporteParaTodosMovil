@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:movil/config/routes/app_rutas.dart';
 import 'package:movil/config/theme/color_tema.dart';
@@ -39,11 +41,13 @@ class Grupo extends StatelessWidget {
           leyenda: 'buscar instructor...',
         ),
         MiniTarjeta(
-          margenSuperior: 15,
-          margenInferior: 15,
-          titulo: 'Edynson Muñoz Jimenez',
-          subtitulo: 'Instructor',
-          botonCierre: true,
+          existeCampoImagen: true,
+          atrMargerSuperior: 15,
+          atrMargerInferior: 15,
+          atrTitulo: 'Edynson Muñoz Jimenez',
+          atrSubTitulo: 'Instructor',
+          existeBotonCierre: true,
+          atrDatosImagen: Uint8List(0),
         ),
         informacionCurso(),
         informacionGrupo(),
@@ -104,11 +108,12 @@ class Grupo extends StatelessWidget {
                       const NeverScrollableScrollPhysics(), // Desactiva scroll interno
                   itemCount: 20, // Cambia esto según tu lista
                   itemBuilder: (BuildContext context, int index) {
+                    //TODO: establecer inkwell para comportamiento al tocar
                     return MiniTarjeta(
-                      titulo: 'Alumno $index',
-                      subtitulo: '123456789',
-                      botonCierre: true,
-                      ruta: AppRutas.inicio,
+                      existeCampoImagen: true,
+                      atrTitulo: 'Alumno $index',
+                      atrSubTitulo: '123456789',
+                      existeBotonCierre: true,
                     );
                   },
                 )),
@@ -136,9 +141,10 @@ class Grupo extends StatelessWidget {
             itemCount: 3, // Cambia esto según tu lista
             itemBuilder: (BuildContext context, int index) {
               return MiniTarjeta(
-                titulo: 'Martes',
-                subtitulo: '3:00 PM - 4:00 PM',
-                botonCierre: true,
+                atrTitulo: 'Martes',
+                atrSubTitulo: '3:00 PM - 4:00 PM',
+                existeBotonCierre: true,
+                existeCampoImagen: false,
               );
             },
           ),

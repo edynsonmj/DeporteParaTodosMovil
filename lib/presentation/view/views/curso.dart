@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:movil/config/routes/app_rutas.dart';
 import 'package:movil/config/theme/color_tema.dart';
@@ -116,15 +118,18 @@ class Curso extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(), // Desactiva scroll interno
       itemCount: 20, // Cambia esto según tu lista
       itemBuilder: (BuildContext context, int index) {
-        return MiniTarjeta(
-          urlImagen:
-              'https://img.asmedia.epimg.net/resizer/v2/2VYSIIZKZNBWJBGDGKHVP2SR7U.jpg?auth=7daff22f993bb1b1c13b1e70bf3edcecad80e4d5d78e9636faa2b040bd872713&width=1200&height=1200&smart=true',
-          titulo: 'Grupo: 2024.2',
-          subtitulo: 'Futbol',
-          indicador: '6/20',
-          indicadorEstado: 'activo',
-          ruta: AppRutas.grupo,
-        );
+        //TODO: establecer inwell para comportamiento al tocar
+        return InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, AppRutas.grupo);
+            },
+            child: MiniTarjeta(
+              existeCampoImagen: true,
+              atrTitulo: 'Grupo: 2024.2',
+              atrSubTitulo: 'Futbol',
+              atrIndicador: '6/20',
+              atrIndicadorEstado: 'activo',
+            ));
       },
     );
   }

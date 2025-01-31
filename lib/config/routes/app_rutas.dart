@@ -7,4 +7,5 @@ class AppRutas {
   static const String grupo = '/grupo';
   static const String categorias = '/categorias';
   static const String InscripcionesGenerales = '/inscripciones/generales';
+  static const String InscripcionesParticulares = '/inscripciones/particulares';
 }

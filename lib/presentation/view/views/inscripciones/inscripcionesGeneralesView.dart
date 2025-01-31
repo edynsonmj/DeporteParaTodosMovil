@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movil/config/routes/app_rutas.dart';
 import 'package:movil/config/theme/color_tema.dart';
 import 'package:movil/config/theme/tipografia.dart';
 import 'package:movil/presentation/view/widgets/bar.dart';
@@ -43,8 +44,7 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
   SafeArea contenedorSeguro(BuildContext context) {
     return SafeArea(
         child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
-            child: Padding(padding: EdgeInsets.all(15), child: contenido())));
+            margin: EdgeInsets.symmetric(horizontal: 25), child: contenido()));
   }
 
   Widget filtro() {
@@ -64,11 +64,11 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
 
   Widget contenido() {
     return Column(children: [
+      configuracionEspecifica(),
       configuracionGeneral(),
       Divider(
         color: ColorTheme.neutral,
       ),
-      configuracionEspecifica()
     ]);
   }
 
@@ -117,16 +117,14 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
   }
 
   Widget configuracionEspecifica() {
-    Widget descripcion = ListTile(
-        title: Text('configuracion detallada', style: Tipografia.cuerpo1()),
-        subtitle: Text(
-            'si deseas una configuracion inscripciones detallada para cada curso',
-            style: Tipografia.cuerpo2()));
-    Widget boton =
-        FilledButton(onPressed: () {}, child: Text('CONFIGURACION DETALLADA'));
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [descripcion, boton],
+    Widget boton = TextButton(
+        onPressed: () {
+          Navigator.pushNamed(context, AppRutas.InscripcionesParticulares);
+        },
+        child: Text('CONFIGURACION DETALLADA'));
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [boton],
     );
   }
 
@@ -142,7 +140,6 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
             actions: [
               TextButton(
                   onPressed: () {
-                    //TODO: llamar funcion que ejecute la accion de confirmar
                     //cierra el alert
                     Navigator.of(context).pop();
                   },
