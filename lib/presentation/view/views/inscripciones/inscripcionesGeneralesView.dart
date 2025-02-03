@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movil/config/formatDate.dart';
 import 'package:movil/config/routes/app_rutas.dart';
 import 'package:movil/config/theme/color_tema.dart';
 import 'package:movil/config/theme/tipografia.dart';
+import 'package:movil/presentation/view/widgets/alertFechas.dart';
 import 'package:movil/presentation/view/widgets/bar.dart';
 import 'package:movil/presentation/viewmodels/categoriaViewModel.dart';
 import 'package:provider/provider.dart';
@@ -100,7 +102,21 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
     Widget programar = OutlinedButton(
         onPressed: () {
           if (_categoriaSeleccionada != null) {
-            _mostrarSelectorFecha(context);
+            //_mostrarProgramar(context, _categoriaSeleccionada!);
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertFechas(
+                    titulo: 'Inscripciones $_categoriaSeleccionada',
+                    contenido:
+                        'Asigne la fecha de apertura y cierre de inscripciones a la categoria $_categoriaSeleccionada',
+                    seleccionRango: (DateTime fecha1, DateTime? fecha2) {
+                      print(fecha1);
+                      print(fecha2);
+                      //TODO: funcion que ejecuta la accion
+                    });
+              },
+            );
           }
         },
         style: OutlinedButton.styleFrom(
@@ -112,7 +128,11 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
         children: [abrir, cerrar, programar]);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: [descripcion, filtro(), acciones],
+      children: [
+        descripcion,
+        filtro(),
+        if (_categoriaSeleccionada != null) acciones
+      ],
     );
   }
 
@@ -165,52 +185,6 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
             title: Text('Cerrar Inscripciones '),
             content: Text(
               '¿Esta seguro de cerrar las inscripciones de todos los grupos para la categoria $categoria?',
-              textAlign: TextAlign.center,
-            ),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    //TODO: llamar funcion para ejecutar accion
-                    //cierra el alert
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('Confirmar')),
-              TextButton(
-                onPressed: () {
-                  //cierra el dialogo
-                  Navigator.of(context).pop();
-                },
-                style: FilledButton.styleFrom(
-                    foregroundColor: ColorTheme.secondary),
-                child: Text('Cancelar'),
-              )
-            ],
-          );
-        });
-  }
-
-  void _mostrarSelectorFecha(BuildContext context) async {
-    DateTime? fechaSeleccionada = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2100),
-      helpText: 'Grupos de $_categoriaSeleccionada abren en...',
-    );
-
-    if (fechaSeleccionada != null) {
-      _confirmarProgramacion(context, fechaSeleccionada);
-    }
-  }
-
-  void _confirmarProgramacion(BuildContext context, DateTime fechaSeccionada) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Programar'),
-            content: Text(
-              '¿Esta seguro de abrir las inscripciones de todos los grupos de $_categoriaSeleccionada en la fecha ${fechaSeccionada.day}/${fechaSeccionada.month}/${fechaSeccionada.year}?',
               textAlign: TextAlign.center,
             ),
             actions: [

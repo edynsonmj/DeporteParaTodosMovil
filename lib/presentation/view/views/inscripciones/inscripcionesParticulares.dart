@@ -1,10 +1,8 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:movil/config/routes/app_rutas.dart';
 import 'package:movil/config/theme/color_tema.dart';
 import 'package:movil/config/theme/tipografia.dart';
+import 'package:movil/presentation/view/widgets/alertFechas.dart';
 import 'package:movil/presentation/view/widgets/bar.dart';
 import 'package:movil/presentation/view/widgets/mini_tarjeta.dart';
 import 'package:movil/presentation/viewmodels/categoriaViewModel.dart';
@@ -174,7 +172,19 @@ class _InscripcionesParticularesState
                   onPressed: () {
                     //cierra el dialogo
                     Navigator.of(context).pop();
-                    _mostrarSelectorFecha(context, grupo);
+                    //_mostrarSelectorFecha(context, grupo);
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertFechas(
+                              seleccionRango:
+                                  (DateTime fecha1, DateTime? fecha2) {
+                                //TODO: funcion que ejecuta la accion
+                              },
+                              titulo: 'inscripciones $grupo',
+                              contenido:
+                                  'asigne a el grupo $grupo una fecha de apertura y cierre para las inscripciones');
+                        });
                   },
                   child: Text('Programar'),
                   style: FilledButton.styleFrom(
@@ -199,6 +209,7 @@ class _InscripcionesParticularesState
                   onPressed: () {
                     //cierra el alert
                     Navigator.of(context).pop();
+                    //TODO: funcion que ejecuta la accon
                   },
                   child: Text('Confirmar')),
               TextButton(
@@ -244,51 +255,5 @@ class _InscripcionesParticularesState
             ],
           );
         });
-  }
-
-  void _confirmarProgramar(String grupo, DateTime fecha) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Programar'),
-            content: Text(
-              '¿Esta seguro de abrir las inscripciones al grupo $grupo en la fecha ${fecha.day}/${fecha.month}/${fecha.year}?',
-              textAlign: TextAlign.center,
-            ),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    //TODO: llamar funcion para ejecutar accion
-                    //cierra el alert
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('Confirmar')),
-              TextButton(
-                onPressed: () {
-                  //cierra el dialogo
-                  Navigator.of(context).pop();
-                },
-                style: FilledButton.styleFrom(
-                    foregroundColor: ColorTheme.secondary),
-                child: Text('Cancelar'),
-              )
-            ],
-          );
-        });
-  }
-
-  void _mostrarSelectorFecha(BuildContext context, String grupo) async {
-    DateTime? fechaSeleccionada = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2100),
-      helpText: 'El grupo $grupo abren el...',
-    );
-
-    if (fechaSeleccionada != null) {
-      _confirmarProgramar(grupo, fechaSeleccionada);
-    }
   }
 }
