@@ -7,13 +7,17 @@ import 'package:movil/config/theme/tipografia.dart';
 import 'package:movil/presentation/view/widgets/bar.dart';
 import 'package:movil/presentation/view/widgets/edit_icon.dart';
 import 'package:movil/presentation/view/widgets/encabezadoImagen.dart';
+import 'package:movil/presentation/view/widgets/menuLateral.dart';
 import 'package:movil/presentation/view/widgets/mini_tarjeta.dart';
 
 class Curso extends StatelessWidget {
   const Curso({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: Bar(title: 'Curso X'), body: contenedorSeguro());
+    return Scaffold(
+        appBar: Bar(title: 'Curso X'),
+        body: contenedorSeguro(),
+        drawer: Menulateral());
   }
 
   Widget contenedorSeguro() {

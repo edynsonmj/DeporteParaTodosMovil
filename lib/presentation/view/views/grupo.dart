@@ -8,6 +8,7 @@ import 'package:movil/presentation/view/widgets/bar.dart';
 import 'package:movil/presentation/view/widgets/campoBusqueda.dart';
 import 'package:movil/presentation/view/widgets/edit_icon.dart';
 import 'package:movil/presentation/view/widgets/encabezadoImagen.dart';
+import 'package:movil/presentation/view/widgets/menuLateral.dart';
 import 'package:movil/presentation/view/widgets/mini_tarjeta.dart';
 
 class Grupo extends StatelessWidget {
@@ -15,6 +16,7 @@ class Grupo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Bar(title: 'Grupo X'),
+      //drawer: Menulateral(),
       body: contenedorSeguro(context),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movil/config/routes/app_rutas.dart';
 import 'package:movil/domain/entities/categoriaEntidad.dart';
 import 'package:movil/presentation/view/widgets/bar.dart';
+import 'package:movil/presentation/view/widgets/menuLateral.dart';
 import 'package:movil/presentation/view/widgets/tarjeta.dart';
 import 'package:movil/presentation/viewmodels/categoriaViewModel.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +41,7 @@ class _CategoriasViewState extends State<CategoriasView> {
     final categoriaViewModel = Provider.of<CategoriaViewModel>(context);
     return Scaffold(
         appBar: Bar(title: 'Categorias'),
+        drawer: Menulateral(),
         body: contenedorSeguro(categoriaViewModel));
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movil/config/routes/app_rutas.dart';
 import 'package:movil/domain/entities/cursoEntidad.dart';
 import 'package:movil/presentation/view/widgets/bar.dart';
+import 'package:movil/presentation/view/widgets/menuLateral.dart';
 import 'package:movil/presentation/view/widgets/tarjeta.dart';
 import 'package:movil/presentation/viewmodels/cursosViewModel.dart';
 import 'package:provider/provider.dart';
@@ -68,6 +69,7 @@ class _CursosViewState extends State<CursosView> {
     cursosViewModel = viewModel;
     return Scaffold(
         appBar: Bar(title: 'Cursos'),
+        drawer: Menulateral(),
         body: contenedorSeguro(context, viewModel));
   }
 
