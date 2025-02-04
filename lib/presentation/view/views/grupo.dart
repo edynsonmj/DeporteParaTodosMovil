@@ -16,7 +16,7 @@ class Grupo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Bar(title: 'Grupo X'),
-      //drawer: Menulateral(),
+      drawer: Menulateral(),
       body: contenedorSeguro(context),
     );
   }

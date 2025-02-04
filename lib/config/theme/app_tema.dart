@@ -23,6 +23,10 @@ class AppTheme {
       textButtonTheme: _textButton(),
       dropdownMenuTheme: _dropdownMenu(),
       chipTheme: _chipTheme(),
+      //Tipo de letra usado para el cuerpo, en caso de necesitar titulo, definir especificamente
+      fontFamily: 'OpenSans',
+      //tipografia usado para titulos, usar solo particularmente y no generalmente
+      //fontFamily: 'TitiliumWeb',
       useMaterial3: true,
     );
   }

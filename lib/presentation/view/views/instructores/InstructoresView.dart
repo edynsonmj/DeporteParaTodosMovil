@@ -6,16 +6,16 @@ import 'package:movil/presentation/view/widgets/bar.dart';
 import 'package:movil/presentation/view/widgets/menuLateral.dart';
 import 'package:movil/presentation/view/widgets/mini_tarjeta.dart';
 
-class Alumnosview extends StatefulWidget {
-  const Alumnosview({super.key});
+class Instructoresview extends StatefulWidget {
+  const Instructoresview({super.key});
 
   @override
-  State<Alumnosview> createState() {
+  State<Instructoresview> createState() {
     return _AlumnosState();
   }
 }
 
-class _AlumnosState extends State<Alumnosview> {
+class _AlumnosState extends State<Instructoresview> {
   String? _categoria;
   String? _curso;
   String? _grupo;

@@ -8,4 +8,8 @@ class AppRutas {
   static const String categorias = '/categorias';
   static const String InscripcionesGenerales = '/inscripciones/generales';
   static const String InscripcionesParticulares = '/inscripciones/particulares';
+  static const String alumnos = '/alumnos';
+  static const String alumno = '/alumnos/alumno';
+  static const String instructores = '/instructores';
+  static const String instructor = '/instructores/instructor';
 }

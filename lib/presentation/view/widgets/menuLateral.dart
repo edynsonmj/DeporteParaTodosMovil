@@ -59,7 +59,7 @@ class Menulateral extends StatelessWidget {
             title: Text('Alumnos'),
             onTap: () {
               Navigator.pop(context);
-              //TODO: ruta
+              Navigator.pushNamed(context, AppRutas.alumnos);
             },
           ),
           ListTile(
@@ -67,7 +67,7 @@ class Menulateral extends StatelessWidget {
             title: Text('Instructores'),
             onTap: () {
               Navigator.pop(context);
-              //TODO: ruta
+              Navigator.pushNamed(context, AppRutas.instructores);
             },
           ),
           ListTile(

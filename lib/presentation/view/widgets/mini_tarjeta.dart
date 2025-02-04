@@ -109,12 +109,15 @@ class MiniTarjeta extends StatelessWidget {
   Widget atrIndicadores() {
     return Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
       //antes de llamar se debe confirmar que los valores existen
-      Text(atrIndicador!, style: Tipografia.cuerpo2(color: ColorTheme.neutral)),
-      Chip(
-          label: Text(
-            atrIndicadorEstado!,
-          ),
-          labelPadding: EdgeInsets.all(0))
+      if (atrIndicador != null)
+        Text(atrIndicador!,
+            style: Tipografia.cuerpo2(color: ColorTheme.neutral)),
+      if (atrIndicadorEstado != null)
+        Chip(
+            label: Text(
+              atrIndicadorEstado!,
+            ),
+            labelPadding: EdgeInsets.all(0))
     ]);
   }
 }

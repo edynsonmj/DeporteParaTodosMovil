@@ -5,6 +5,7 @@ import 'package:movil/config/theme/color_tema.dart';
 import 'package:movil/config/theme/tipografia.dart';
 import 'package:movil/presentation/view/widgets/alertFechas.dart';
 import 'package:movil/presentation/view/widgets/bar.dart';
+import 'package:movil/presentation/view/widgets/menuLateral.dart';
 import 'package:movil/presentation/viewmodels/categoriaViewModel.dart';
 import 'package:provider/provider.dart';
 
@@ -39,6 +40,7 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
     categoriaViewModel = Provider.of<CategoriaViewModel>(context);
     return Scaffold(
       appBar: Bar(title: 'Inscripciones'),
+      drawer: Menulateral(),
       body: contenedorSeguro(context),
     );
   }
