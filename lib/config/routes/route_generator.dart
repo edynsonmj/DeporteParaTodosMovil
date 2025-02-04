@@ -8,6 +8,7 @@ import 'package:movil/presentation/view/views/cursos.dart';
 import 'package:movil/presentation/view/views/grupo.dart';
 import 'package:movil/presentation/view/views/inscripciones/inscripcionesGeneralesView.dart';
 import 'package:movil/presentation/view/views/inscripciones/inscripcionesParticulares.dart';
+import 'package:movil/presentation/view/views/instructores/InstructorView.dart';
 import 'package:movil/presentation/view/views/instructores/InstructoresView.dart';
 import 'package:movil/presentation/view/views/page1.dart';
 import 'package:movil/presentation/view/views/page2.dart';
@@ -45,6 +46,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 
     case AppRutas.instructores:
       return MaterialPageRoute(builder: (_) => Instructoresview());
+
+    case AppRutas.instructor:
+      String datos = settings.arguments.toString();
+      return MaterialPageRoute(
+          builder: (_) => Instructorview(instructor: datos));
 
     default:
       return MaterialPageRoute(builder: (_) => Page1());

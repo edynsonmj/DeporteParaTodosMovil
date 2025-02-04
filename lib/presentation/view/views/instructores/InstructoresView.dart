@@ -17,12 +17,11 @@ class Instructoresview extends StatefulWidget {
 
 class _AlumnosState extends State<Instructoresview> {
   String? _categoria;
-  String? _curso;
-  String? _grupo;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Bar(title: 'Alumnos'),
+      appBar: Bar(title: 'Instructores'),
       drawer: Menulateral(),
       body: contenedorSeguro(),
     );
@@ -58,7 +57,7 @@ class _AlumnosState extends State<Instructoresview> {
       margin: EdgeInsets.symmetric(vertical: 8),
       child: OutlinedButton.icon(
           onPressed: () {},
-          label: Text('AGREGAR ALUMNO'),
+          label: Text('AGREGAR INSTRUCTOR'),
           icon: Icon(Icons.add)),
     );
   }
@@ -68,14 +67,12 @@ class _AlumnosState extends State<Instructoresview> {
         margin: EdgeInsets.symmetric(vertical: 8),
         child: Column(
           children: [
-            filtroCategoria(),
-            if (_categoria != null) filtroCurso(),
-            if (_curso != null && _categoria != null) filtroGrupo(),
+            filtro(),
           ],
         ));
   }
 
-  Widget filtroCategoria() {
+  Widget filtro() {
     DropdownMenu menu = DropdownMenu(
         helperText: 'seleccione una categoria',
         hintText: 'Sin seleccion',
@@ -83,10 +80,6 @@ class _AlumnosState extends State<Instructoresview> {
         onSelected: (value) {
           setState(() {
             _categoria = value;
-            if (_categoria == null) {
-              _curso = null;
-              _grupo = null;
-            }
           });
         },
         dropdownMenuEntries: [
@@ -102,70 +95,21 @@ class _AlumnosState extends State<Instructoresview> {
     );
   }
 
-  Widget filtroCurso() {
-    DropdownMenu menu = DropdownMenu(
-        helperText: 'seleccione un curso',
-        hintText: 'Sin seleccion',
-        textAlign: TextAlign.center,
-        onSelected: (value) {
-          setState(() {
-            _curso = value;
-            if (_curso == null) {
-              _grupo = null;
-            }
-          });
-        },
-        dropdownMenuEntries: [
-          DropdownMenuEntry(value: null, label: 'sin seleccion'),
-          DropdownMenuEntry(value: 'curso 1', label: 'curso 1'),
-          DropdownMenuEntry(value: 'curso 2', label: 'curso 2'),
-          DropdownMenuEntry(value: 'curso 3', label: 'curso 3'),
-        ]);
-
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      child: menu,
-    );
-  }
-
-  Widget filtroGrupo() {
-    DropdownMenu menu = DropdownMenu(
-        helperText: 'seleccione un grupo',
-        hintText: 'Sin seleccion',
-        textAlign: TextAlign.center,
-        onSelected: (value) {
-          setState(() {
-            _grupo = value;
-          });
-        },
-        dropdownMenuEntries: [
-          DropdownMenuEntry(value: null, label: 'sin seleccion'),
-          DropdownMenuEntry(value: 'grupo 1', label: 'grupo 1'),
-          DropdownMenuEntry(value: 'grupo 2', label: 'grupo 2'),
-          DropdownMenuEntry(value: 'grupo 3', label: 'grupo 3'),
-        ]);
-
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      child: menu,
-    );
-  }
-
   Widget seccionListado() {
     return Container(
       child: Column(
         children: [
           Text(
-            'Listado alumno',
+            'Listado instructores',
             style: Tipografia.h5(),
           ),
-          listadoAlumnos(),
+          listadoInstructores(),
         ],
       ),
     );
   }
 
-  Widget listadoAlumnos() {
+  Widget listadoInstructores() {
     return ListView.builder(
         //ajusta el tamaño de la lista al contenido
         shrinkWrap: true,
@@ -176,15 +120,15 @@ class _AlumnosState extends State<Instructoresview> {
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
             child: MiniTarjeta(
-              atrTitulo: 'alumno $index',
-              atrSubTitulo: 'identificacion $index',
+              atrTitulo: 'Instructor $index',
+              atrSubTitulo: 'Reportó: 5/6/2025',
               existeCampoImagen: true,
-              atrIndicadorEstado: 'tipo',
-              atrIndicador: 'facultad',
+              atrIndicadorEstado: 'Activo',
+              atrIndicador: '123456789',
             ),
             onTap: () {
-              Navigator.pushNamed(context, AppRutas.alumno,
-                  arguments: 'alumno $index');
+              Navigator.pushNamed(context, AppRutas.instructor,
+                  arguments: 'instructor $index');
             },
           );
         });

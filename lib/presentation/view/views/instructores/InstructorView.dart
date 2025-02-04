@@ -3,7 +3,6 @@ import 'package:movil/config/theme/color_tema.dart';
 import 'package:movil/config/theme/tipografia.dart';
 import 'package:movil/presentation/view/widgets/avatar.dart';
 import 'package:movil/presentation/view/widgets/bar.dart';
-import 'package:movil/presentation/view/widgets/campoBusqueda.dart';
 import 'package:movil/presentation/view/widgets/edit_icon.dart';
 import 'package:movil/presentation/view/widgets/menuLateral.dart';
 import 'package:movil/presentation/view/widgets/mini_tarjeta.dart';
@@ -15,11 +14,11 @@ class Instructorview extends StatefulWidget {
   @override
   State<Instructorview> createState() {
     // TODO: implement createState
-    return _AlumnoState();
+    return _InstructorState();
   }
 }
 
-class _AlumnoState extends State<Instructorview> {
+class _InstructorState extends State<Instructorview> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -47,11 +46,10 @@ class _AlumnoState extends State<Instructorview> {
           children: [
             seccionInformacion(),
             Divider(),
+            seccionProrroga(),
+            Divider(),
             seccionInscripcion(),
             seccionGrupos(),
-            Divider(),
-            seccionAtenciones(),
-            Divider(),
             seccionAcciones()
           ],
         );
@@ -96,41 +94,57 @@ class _AlumnoState extends State<Instructorview> {
             dense: true,
             visualDensity: VisualDensity.compact,
             title: Text(
-              '9876543210',
-              style: Tipografia.cuerpo1(),
-            ),
-            subtitle: Text('Codigo', style: Tipografia.cuerpo2()),
-          ),
-          ListTile(
-            dense: true,
-            visualDensity: VisualDensity.compact,
-            title: Text(
               'Masculino',
               style: Tipografia.cuerpo1(),
             ),
             subtitle: Text('Sexo', style: Tipografia.cuerpo2()),
           ),
-          ListTile(
-            dense: true,
-            visualDensity: VisualDensity.compact,
-            title: Text(
-              'Ingeniria Electronica y telecomunicaciones',
-              style: Tipografia.cuerpo1(),
-            ),
-            subtitle: Text('Facultad', style: Tipografia.cuerpo2()),
-          ),
-          ListTile(
-            dense: true,
-            visualDensity: VisualDensity.compact,
-            title: Text(
-              'Estudiante',
-              style: Tipografia.cuerpo1(),
-            ),
-            subtitle: Text('Estamento', style: Tipografia.cuerpo2()),
-          ),
         ],
       ),
       Positioned(top: 150, right: 8, child: EditIcon())
+    ]);
+  }
+
+  Widget seccionProrroga() {
+    return Stack(children: [
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            'Carga informacion',
+            style: Tipografia.h6(color: ColorTheme.primary),
+          ),
+          ListTile(
+            dense: true,
+            visualDensity: VisualDensity.compact,
+            title: Text(
+              '28 de cada mes',
+              style: Tipografia.cuerpo1(),
+            ),
+            subtitle: Text('Limite general', style: Tipografia.cuerpo2()),
+          ),
+          ListTile(
+            dense: true,
+            visualDensity: VisualDensity.compact,
+            title: Text(
+              '5',
+              style: Tipografia.cuerpo1(),
+            ),
+            subtitle:
+                Text('Dias faltantes prorroga', style: Tipografia.cuerpo2()),
+          ),
+          ListTile(
+            dense: true,
+            visualDensity: VisualDensity.compact,
+            title: Text(
+              '5/5/2025',
+              style: Tipografia.cuerpo1(),
+            ),
+            subtitle: Text('Fecha limite', style: Tipografia.cuerpo2()),
+          )
+        ],
+      ),
+      Positioned(top: 30, right: 8, child: EditIcon())
     ]);
   }
 
@@ -140,7 +154,7 @@ class _AlumnoState extends State<Instructorview> {
         child: Column(
           children: [
             Text(
-              'Agregar inscripcion',
+              'Agregar grupo',
               style: Tipografia.h6(color: ColorTheme.primary),
             ),
             Padding(
@@ -158,7 +172,7 @@ class _AlumnoState extends State<Instructorview> {
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
         children: [
-          Text('Grupos activos inscritos',
+          Text('Grupos asignado al instructor',
               style: Tipografia.h6(color: ColorTheme.primary)),
           listaGrupos(),
         ],
@@ -185,40 +199,24 @@ class _AlumnoState extends State<Instructorview> {
         });
   }
 
-  Widget seccionAtenciones() {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      child: Column(
-        children: [
-          Text('Atenciones', style: Tipografia.h6(color: ColorTheme.primary)),
-          listaAtenciones(),
-        ],
-      ),
-    );
-  }
-
-  Widget listaAtenciones() {
-    return ListView.builder(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: 20,
-        itemBuilder: (BuildContext context, int index) {
-          return MiniTarjeta(
-            atrTitulo: 'fecha $index',
-            atrSubTitulo: 'curso $index',
-            existeCampoImagen: false,
-            atrIndicador: 'categoria $index',
-            existeBotonCierre: true,
-          );
-        });
-  }
-
   Widget seccionAcciones() {
     return Container(
-      child: FilledButton(
-          onPressed: () {},
-          child: Text('ELIMINAR ALUMNO'),
-          style: FilledButton.styleFrom(backgroundColor: ColorTheme.secondary)),
-    );
+        margin: EdgeInsets.symmetric(vertical: 20),
+        child: Column(
+          children: [
+            OutlinedButton(
+              onPressed: () {},
+              child: Text('DESHABILITAR INSTRUCTOR'),
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: ColorTheme.secondary,
+                  side: BorderSide(color: ColorTheme.secondary)),
+            ),
+            FilledButton(
+                onPressed: () {},
+                child: Text('ELIMINAR INSTRUCTOR'),
+                style: FilledButton.styleFrom(
+                    backgroundColor: ColorTheme.secondary)),
+          ],
+        ));
   }
 }
