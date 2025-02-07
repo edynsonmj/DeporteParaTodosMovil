@@ -1,17 +1,17 @@
 import 'package:dio/dio.dart';
+import 'package:movil/data/api/conexion/ConexionCategoria.dart';
+import 'package:movil/data/models/categoriaModelo.dart';
 import 'package:movil/config/configServicio.dart';
-import 'package:movil/data/api/cliente/cursoClienteAbstracto.dart';
-import 'package:movil/data/models/cursoModelo.dart';
 
-class CursoCliente implements CursoClienteAbstracto {
+class ConexionCategoriaRemota implements ConexionCategoria {
   final _dio = Dio(BaseOptions(baseUrl: ConfigServicio().obtenerBaseApi()));
 
   @override
-  Future<List<CursoModelo>> obtenerCursos() async {
+  Future<List<categoriaModelo>> obtenerCategorias() async {
     //intentar hacer la peticion
     try {
       print(_dio.options.baseUrl);
-      final response = await _dio.get('/cursos');
+      final response = await _dio.get('/categorias');
       print(response.realUri);
 
       //se espera codigo 200 para la peticion, si no manejar error
@@ -25,10 +25,10 @@ class CursoCliente implements CursoClienteAbstracto {
       List<dynamic> data = response.data;
 
       //se construye la lista segun el modelo, para ello se usa factory para construir cada categoria a partir de un json
-      List<CursoModelo> cursos =
-          data.map((json) => CursoModelo.fromJson(json)).toList();
+      List<categoriaModelo> categorias =
+          data.map((json) => categoriaModelo.fromJson(json)).toList();
 
-      return cursos;
+      return categorias;
     } on DioException catch (dioError) {
       print('>>>>>>>>>>>>>Excepcion dio: ${dioError.message}');
       if (dioError.type == DioExceptionType.connectionTimeout) {

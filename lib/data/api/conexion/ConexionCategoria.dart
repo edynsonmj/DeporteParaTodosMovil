@@ -1,5 +1,5 @@
 import 'package:movil/data/models/categoriaModelo.dart';
 
-abstract class CategoriaClienteAbstracto {
+abstract class ConexionCategoria {
   Future<List<categoriaModelo>> obtenerCategorias();
 }

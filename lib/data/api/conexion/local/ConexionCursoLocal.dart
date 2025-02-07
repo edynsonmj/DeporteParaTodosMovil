@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:movil/data/api/cliente/cursoClienteAbstracto.dart';
+import 'package:movil/data/api/conexion/ConexionCurso.dart';
 import 'package:movil/data/models/cursoModelo.dart';
 
-class CursoClienteLocal implements CursoClienteAbstracto {
+class ConexionCursoLocal implements ConexionCurso {
   String data = '''
   [
     {

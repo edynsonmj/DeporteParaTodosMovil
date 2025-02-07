@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movil/config/routes/app_rutas.dart';
 import 'package:movil/config/configServicio.dart';
-import 'package:movil/data/api/fabrica/clienteFabricaAbstracta.dart';
+import 'package:movil/data/api/fabrica/ConexionFabricaAbstracta.dart';
 import 'package:movil/presentation/view/widgets/bar.dart';
 
 class Page1 extends StatefulWidget {
@@ -44,7 +44,7 @@ class _formularioState extends State<Page1> {
       ),
       ElevatedButton(
           onPressed: () {
-            ConfigServicio.tipoFabricaServicio = ClienteFabricaAbstracta
+            ConfigServicio.tipoFabricaServicio = ConexionFabricaAbstracta
                 .SERVICIO_LOCAL; // Asignar la IP al servicio
             Navigator.pushNamed(context, AppRutas.categorias);
           },

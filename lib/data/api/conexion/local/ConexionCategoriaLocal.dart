@@ -1,8 +1,8 @@
-import 'package:movil/data/api/cliente/categoriaClienteAbstracto.dart';
+import 'package:movil/data/api/conexion/ConexionCategoria.dart';
 import 'package:movil/data/models/categoriaModelo.dart';
 import 'package:movil/data/models/imagenModelo.dart';
 
-class CategoriaClienteLocal implements CategoriaClienteAbstracto {
+class ConexionCategoriaLocal implements ConexionCategoria {
   final List<categoriaModelo> _base = [
     categoriaModelo(
         titulo: "Seleccionado",

@@ -1,9 +1,9 @@
-import 'package:movil/data/api/cliente/cursoClienteAbstracto.dart';
+import 'package:movil/data/api/conexion/ConexionCurso.dart';
 import 'package:movil/domain/entities/cursoEntidad.dart';
 import 'package:movil/domain/entities/imagenEntidad.dart';
 
 class CursoRepositorio {
-  CursoClienteAbstracto cliente;
+  ConexionCurso cliente;
   CursoRepositorio({required this.cliente});
 
   Future<List<CursoEntidad>> obtenerCursos() async {
