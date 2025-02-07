@@ -13,7 +13,6 @@ class Instructorview extends StatefulWidget {
 
   @override
   State<Instructorview> createState() {
-    // TODO: implement createState
     return _InstructorState();
   }
 }
@@ -21,7 +20,6 @@ class Instructorview extends StatefulWidget {
 class _InstructorState extends State<Instructorview> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: Bar(title: widget.instructor),
       drawer: Menulateral(),
@@ -206,16 +204,17 @@ class _InstructorState extends State<Instructorview> {
           children: [
             OutlinedButton(
               onPressed: () {},
-              child: Text('DESHABILITAR INSTRUCTOR'),
               style: OutlinedButton.styleFrom(
                   foregroundColor: ColorTheme.secondary,
                   side: BorderSide(color: ColorTheme.secondary)),
+              child: Text('DESHABILITAR INSTRUCTOR'),
             ),
             FilledButton(
-                onPressed: () {},
-                child: Text('ELIMINAR INSTRUCTOR'),
-                style: FilledButton.styleFrom(
-                    backgroundColor: ColorTheme.secondary)),
+              onPressed: () {},
+              style:
+                  FilledButton.styleFrom(backgroundColor: ColorTheme.secondary),
+              child: Text('ELIMINAR INSTRUCTOR'),
+            ),
           ],
         ));
   }

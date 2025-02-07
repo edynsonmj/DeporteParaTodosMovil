@@ -15,20 +15,19 @@ class Tarjeta extends StatelessWidget {
   String? atrInfo2;
   String? atrInfoPie;
   String? atrRutaTarjeta;
-  String? atrRutaEdicion;
 
-  Tarjeta(
-      {super.key,
-      //la url de la imagen no puede ser nula, pero si vacia, en cuyo caso tomara el valor por defecto
-      this.atrDatosImagen,
-      this.atrUrlImagen = '',
-      this.atrTitulo,
-      this.atrDescripcion,
-      this.atrInfo1,
-      this.atrInfo2,
-      this.atrInfoPie,
-      this.atrRutaTarjeta,
-      this.atrRutaEdicion});
+  Tarjeta({
+    super.key,
+    //la url de la imagen no puede ser nula, pero si vacia, en cuyo caso tomara el valor por defecto
+    this.atrDatosImagen,
+    this.atrUrlImagen = '',
+    this.atrTitulo,
+    this.atrDescripcion,
+    this.atrInfo1,
+    this.atrInfo2,
+    this.atrInfoPie,
+    this.atrRutaTarjeta,
+  });
   @override
   Widget build(BuildContext context) {
     return tarjeta(context);
@@ -43,17 +42,9 @@ class Tarjeta extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         //Stack permite posicionar elementos sobre elementos, con el arguemento positioned
         child: SizedBox(
-            width: dimension.width * 0.8,
-            child: Stack(
-              children: [
-                //Retorna un SisedBox, el cual contiene la primera capa de Stack lo cual es el contenido de la tarjeta.
-                cardBox(context, dimension, atrRutaTarjeta),
-                //se posiciona sobre la tarjeta el icono de edicion
-                if (atrRutaEdicion != null)
-                  Positioned(
-                      top: 8, right: 8, child: EditIcon(ruta: atrRutaEdicion))
-              ],
-            )));
+          width: dimension.width * 0.8,
+          child: cardBox(context, dimension, atrRutaTarjeta),
+        ));
     return tarjeta;
   }
 

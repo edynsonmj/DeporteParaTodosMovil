@@ -118,7 +118,6 @@ class _CursosViewState extends State<CursosView> {
               child: Tarjeta(
             atrDatosImagen: curso.imagen?.datos,
             atrRutaTarjeta: AppRutas.curso,
-            atrRutaEdicion: AppRutas.curso,
             atrTitulo: curso.nombreCurso,
             atrInfo1: curso.nombreDeporte,
             atrInfo2: curso.tituloCategoria,

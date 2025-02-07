@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movil/config/routes/app_rutas.dart';
+import 'package:movil/domain/entities/categoriaEntidad.dart';
 import 'package:movil/presentation/view/views/Categorias/CategoriasView.dart';
 import 'package:movil/presentation/view/views/alumnos/AlumnoView.dart';
 import 'package:movil/presentation/view/views/alumnos/alumnosView.dart';
+import 'package:movil/presentation/view/views/categorias/CategoriaFormulario.dart';
 import 'package:movil/presentation/view/views/curso.dart';
 import 'package:movil/presentation/view/views/cursos.dart';
 import 'package:movil/presentation/view/views/grupo.dart';
@@ -51,6 +53,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       String datos = settings.arguments.toString();
       return MaterialPageRoute(
           builder: (_) => Instructorview(instructor: datos));
+
+    case AppRutas.editarCategoria:
+      CategoriaEntidad? datos = settings.arguments as CategoriaEntidad?;
+      return MaterialPageRoute(
+          builder: (_) => CategoriaFormulario(categoria: datos));
 
     default:
       return MaterialPageRoute(builder: (_) => Page1());

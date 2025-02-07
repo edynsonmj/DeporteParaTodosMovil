@@ -25,8 +25,7 @@ class Inicio extends StatelessWidget {
                       atrTitulo: 'categoria $index',
                       atrDescripcion:
                           'Aute nostrud deserunt ullamco voluptate aliqua anim anim deserunt ullamco nostrud. Labore pariatur ea amet non eu sunt. Esse labore nulla et sint consectetur sunt. Aliqua eu Lorem laboris mollit fugiat cupidatat nisi laboris et non. Quis nisi dolor esse laboris minim tempor veniam nostrud. Ex magna laboris mollit in amet officia quis tempor non.',
-                      atrRutaTarjeta: AppRutas.cursos,
-                      atrRutaEdicion: AppRutas.curso),
+                      atrRutaTarjeta: AppRutas.cursos),
                 ],
               );
             }));

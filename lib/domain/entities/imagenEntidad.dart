@@ -13,4 +13,13 @@ class ImagenEntidad {
       required this.tipoArchivo,
       required this.longitud,
       required this.datos});
+
+  factory ImagenEntidad.fromJson(dynamic json) {
+    return ImagenEntidad(
+        id: json['id'],
+        nombre: json['nombre'],
+        tipoArchivo: json['tipoArchivo'],
+        longitud: json['longitud'],
+        datos: json['datos']);
+  }
 }

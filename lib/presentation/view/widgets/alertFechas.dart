@@ -8,6 +8,7 @@ class AlertFechas extends StatefulWidget {
   final String contenido;
 
   AlertFechas({
+    super.key,
     required this.titulo,
     required this.contenido,
     required this.seleccionRango,
