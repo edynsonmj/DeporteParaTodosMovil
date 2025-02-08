@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:movil/data/models/categoriaModelo.dart';
 import 'package:movil/domain/entities/categoriaEntidad.dart';
 import 'package:movil/presentation/view/widgets/bar.dart';
@@ -17,6 +20,19 @@ class CategoriaFormulario extends StatefulWidget {
 
 class _CategoriaFormularioState extends State<CategoriaFormulario> {
   CategoriaEntidad? _categoria;
+  File? _imagen;
+
+  Future<void> _pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? pickedImage = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      setState(() {
+        _imagen = File(pickedImage.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     _categoria = widget.categoria;
@@ -60,6 +76,14 @@ class _CategoriaFormularioState extends State<CategoriaFormulario> {
                   return 'Ingresa titulo de la categoria, por favor';
                 }
               },
+            ),
+            _imagen == null
+                ? Text('No se ha seleccionado ninguna imagen.')
+                : Image.file(_imagen!),
+            SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: _pickImage,
+              child: Text('Seleccionar Imagen'),
             ),
           ],
         ))));
