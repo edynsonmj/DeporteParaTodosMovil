@@ -24,4 +24,10 @@ class ConexionCategoriaLocal implements ConexionCategoria {
   Future<List<categoriaModelo>> obtenerCategorias() async {
     return await Future.value(_base);
   }
+
+  @override
+  Future<categoriaModelo> guardarCategoria(categoriaModelo categoria) {
+    // TODO: implement guardarCategoria
+    throw UnimplementedError();
+  }
 }

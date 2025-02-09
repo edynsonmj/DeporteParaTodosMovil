@@ -4,15 +4,20 @@ import 'package:movil/data/models/categoriaModelo.dart';
 import 'package:movil/config/configServicio.dart';
 
 class ConexionCategoriaRemota implements ConexionCategoria {
-  final _dio = Dio(BaseOptions(baseUrl: ConfigServicio().obtenerBaseApi()));
+  final _dio = Dio(
+      BaseOptions(baseUrl: ConfigServicio().obtenerBaseApi())
+  );
 
   @override
   Future<List<categoriaModelo>> obtenerCategorias() async {
+    Response response;
     //intentar hacer la peticion
     try {
-      print(_dio.options.baseUrl);
-      final response = await _dio.get('/categorias');
-      print(response.realUri);
+      print('esto es la base url: '+_dio.options.baseUrl);
+      response = await _dio.get(
+          '/categorias'
+      );
+      print('este es la direccion accedida ${response.realUri}');
 
       //se espera codigo 200 para la peticion, si no manejar error
       if (response.statusCode != 200) {
@@ -48,5 +53,11 @@ class ConexionCategoriaRemota implements ConexionCategoria {
       //TODO: error fatal, en este caso no se puede continuar con la ejecucion, direccionar a una vista de error y sugerir comunicacion con el soporte
       return Future.value(null);
     }
+  }
+
+  @override
+  Future<categoriaModelo> guardarCategoria(categoriaModelo datos) {
+    // TODO: implement guardarCategoria
+    throw UnimplementedError();
   }
 }
