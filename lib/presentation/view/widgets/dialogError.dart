@@ -24,7 +24,7 @@ class DialogError extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('${entry.key}: ', style: Tipografia.cuerpo1()),
-                    Flexible(child: Text(entry.value)),
+                    Flexible(child: Text('${entry.value}')),
                   ],
                 );
               }).toList(),

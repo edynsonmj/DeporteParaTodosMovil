@@ -74,7 +74,7 @@ class ConexionCategoriaRemota implements ConexionCategoria {
           datos.imagenFile!.path,
           filename: datos.imagenFile!.path.split('/').last, 
           contentType: DioMediaType.parse(tipoMime)))
-          :null
+          :''
       ,
     });
     try{
