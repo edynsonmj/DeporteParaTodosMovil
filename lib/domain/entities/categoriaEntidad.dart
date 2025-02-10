@@ -6,7 +6,7 @@ class CategoriaEntidad {
   final String? id;
   final String titulo;
   final String descripcion;
-  final ImagenEntidad? imagen;
+  ImagenEntidad? imagen;
   File? imagenFile;
 
   CategoriaEntidad(

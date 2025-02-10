@@ -43,7 +43,7 @@ class _CategoriaFormularioState extends State<CategoriaFormulario> {
   }
 
   @override
-  void initState() async{
+  void initState(){
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_){
       _viewModel = Provider.of<CategoriaViewModel>(context, listen: false);
@@ -55,10 +55,17 @@ class _CategoriaFormularioState extends State<CategoriaFormulario> {
       if(_categoria!.descripcion!=null) _descripcionController.text = _categoria!.descripcion;
       if(_categoria!.imagen!=null){
         if(_categoria!.imagen!.datos!=null){
-          _imagen = await ConvertFile.uInt8ListToFile(_categoria!.imagen!.datos, _categoria!.imagen!.nombre);
+          _convertirImagen();
         }
       }
     }
+  }
+
+  Future<void> _convertirImagen() async{
+    File? imagen = await ConvertFile.uInt8ListToFile(_categoria!.imagen!.datos, _categoria!.imagen!.nombre);
+    setState((){
+      _imagen = imagen;
+    });
   }
 
   @override
@@ -82,7 +89,7 @@ class _CategoriaFormularioState extends State<CategoriaFormulario> {
         entidad.imagenFile = _imagen;
       }
 
-      //TODO:enviar informacion mediante el model view
+      _viewModel.guardarCategoria(entidad, context);
 
       // Limpiar los campos del formulario
       _tituloController.clear();
@@ -117,12 +124,12 @@ class _CategoriaFormularioState extends State<CategoriaFormulario> {
     return TextFormField(
       controller: _tituloController,
       decoration: InputDecoration(labelText: 'Titulo'),
-      validator: (value) {
+      /*validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Ingresa titulo de la categoria, por favor';
         }
         return null;
-      },
+      },*/
     );
   }
 
@@ -132,12 +139,12 @@ class _CategoriaFormularioState extends State<CategoriaFormulario> {
       maxLines: 10,
       minLines: 1,
       decoration: InputDecoration(label: Text('Descripcion')),
-      validator: (value) {
+      /*validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Ingresa titulo de la categoria, por favor';
         }
         return null;
-      },
+      },*/
     );
   }
 
@@ -172,10 +179,7 @@ class _CategoriaFormularioState extends State<CategoriaFormulario> {
     return Container(
       child: FilledButton(
           onPressed: (){
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Categoría creada')),
-            );
-
+            _submitForm();
           },
           child: Text('GUARDAR'),
       ),

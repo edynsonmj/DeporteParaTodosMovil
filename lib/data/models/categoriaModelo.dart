@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:movil/data/models/imagenModelo.dart';
 
 class categoriaModelo {
   final String titulo;
   final String descripcion;
   final ImagenModelo? imagen;
+  File? imagenFile;
 
   categoriaModelo(
       {required this.titulo, required this.descripcion, this.imagen});
@@ -12,8 +15,8 @@ class categoriaModelo {
     return categoriaModelo(
         titulo: json['titulo'],
         descripcion: json['descripcion'],
-        imagen: ((json['objImagen'] != null)
-            ? ImagenModelo.fromJson(json['objImagen'])
+        imagen: ((json['imagen'] != null)
+            ? ImagenModelo.fromJson(json['imagen'])
             : (null)));
   }
 

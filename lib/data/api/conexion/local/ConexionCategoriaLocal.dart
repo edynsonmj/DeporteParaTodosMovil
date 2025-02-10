@@ -1,6 +1,7 @@
 import 'package:movil/data/api/conexion/ConexionCategoria.dart';
 import 'package:movil/data/models/categoriaModelo.dart';
 import 'package:movil/data/models/imagenModelo.dart';
+import 'package:movil/data/models/respuestaModelo.dart';
 
 class ConexionCategoriaLocal implements ConexionCategoria {
   final List<categoriaModelo> _base = [
@@ -26,7 +27,7 @@ class ConexionCategoriaLocal implements ConexionCategoria {
   }
 
   @override
-  Future<categoriaModelo> guardarCategoria(categoriaModelo categoria) {
+  Future<RespuestaModelo> guardarCategoria(categoriaModelo categoria) {
     // TODO: implement guardarCategoria
     throw UnimplementedError();
   }
