@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:movil/config/configServicio.dart';
 import 'package:movil/data/api/conexion/ConexionCurso.dart';
 import 'package:movil/data/models/cursoModelo.dart';
+import 'package:movil/data/models/respuestaModelo.dart';
 
 class ConexionCursoRemoto implements ConexionCurso {
   final _dio = Dio(BaseOptions(baseUrl: ConfigServicio().obtenerBaseApi()));
@@ -48,5 +49,29 @@ class ConexionCursoRemoto implements ConexionCurso {
       //TODO: error fatal, en este caso no se puede continuar con la ejecucion, direccionar a una vista de error y sugerir comunicacion con el soporte
       return Future.value(null);
     }
+  }
+
+  @override
+  Future<RespuestaModelo> agregarCurso(CursoModelo curso) {
+    // TODO: implement agregarCurso
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<RespuestaModelo> eliminarCurso(CursoModelo curso) {
+    // TODO: implement eliminarCurso
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<RespuestaModelo> enconcontrarCursosDe(String tituloCategoria) {
+    // TODO: implement enconcontrarCursosDe
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<RespuestaModelo> encontrarTodosCursos() {
+    // TODO: implement encontrarTodosCursos
+    throw UnimplementedError();
   }
 }

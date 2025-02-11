@@ -24,12 +24,13 @@ class _CategoriasViewState extends State<CategoriasView> {
   @override
   void initState() {
     super.initState();
-      //cargamos las categorias
-      WidgetsBinding.instance.addPostFrameCallback((_){
-        categoriaViewModel = Provider.of<CategoriaViewModel>(context, listen: false);
-        //categoriaViewModel.fetchCategorias();
-        categoriaViewModel.cargarCategorias(context);
-      });
+    //cargamos las categorias
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      categoriaViewModel =
+          Provider.of<CategoriaViewModel>(context, listen: false);
+      //categoriaViewModel.fetchCategorias();
+      categoriaViewModel.cargarCategorias(context);
+    });
   }
 
   @override
@@ -37,15 +38,13 @@ class _CategoriasViewState extends State<CategoriasView> {
     //accedemos al provider para usar los datos
     //categoriaViewModel = Provider.of<CategoriaViewModel>(context, listen: true);
     return Scaffold(
-        appBar: Bar(title: 'Categorias'),
-        drawer: Menulateral(),
-        //body: contenedorSeguro(categoriaViewModel)
-        body: Consumer<CategoriaViewModel>(
-          builder: (context, viewModel,child){
-            return contenedorSeguro(viewModel);
-          }
-        ),
-      );
+      appBar: Bar(title: 'Categorias'),
+      drawer: Menulateral(),
+      //body: contenedorSeguro(categoriaViewModel)
+      body: Consumer<CategoriaViewModel>(builder: (context, viewModel, child) {
+        return contenedorSeguro(viewModel);
+      }),
+    );
   }
 
   Widget contenedorSeguro(CategoriaViewModel viewModel) {
@@ -66,7 +65,7 @@ class _CategoriasViewState extends State<CategoriasView> {
   }
 
   Widget listaCategorias(CategoriaViewModel viewModel) {
-    if(viewModel.categorias==null){
+    if (viewModel.categorias == null) {
       return const Center(child: CircularProgressIndicator());
     }
     return ListView.builder(
@@ -77,9 +76,9 @@ class _CategoriasViewState extends State<CategoriasView> {
         itemCount: viewModel.categorias?.length ?? 0,
         itemBuilder: (context, index) {
           final CategoriaEntidad categoria = viewModel.categorias![index];
-          if(categoria.imagen!=null){
+          if (categoria.imagen != null) {
             print('este tiene datos');
-          }else{
+          } else {
             print('sin datos');
           }
           return Row(
@@ -106,6 +105,22 @@ class _CategoriasViewState extends State<CategoriasView> {
                     arguments: categoria);
               },
               icon: EditIcon()),
+        ),
+        Positioned(
+          right: 8,
+          top: 50,
+          child: IconButton(
+              onPressed: () {
+                categoriaViewModel.eliminarCategoria(categoria.titulo, context);
+              },
+              icon: Icon(
+                Icons.delete,
+                color: Colors.white,
+                shadows: [
+                  Shadow(
+                      color: Colors.black, offset: Offset(2, 2), blurRadius: 5)
+                ],
+              )),
         )
       ],
     );

@@ -13,15 +13,15 @@ class ServicioCategoria {
             cliente: ConexionFabricaAbstracta.obtenerConexionFabrica()
                 .crearConexionCategoria());
 
-  Future<List<CategoriaEntidad>> call() async {
-    return await repositorio.obtenerCategorias();
-  }
-
-  Future<RespuestaModelo> insertarCategoria(CategoriaEntidad entidad) async{
+  Future<RespuestaModelo> insertarCategoria(CategoriaEntidad entidad) async {
     return await repositorio.insertarCategoria(entidad);
   }
 
-  Future<RespuestaModelo> encontrarCategorias() async{
+  Future<RespuestaModelo> encontrarCategorias() async {
     return await repositorio.encontrarCategorias();
+  }
+
+  Future<RespuestaModelo> eliminarCategoria(String titulo) async {
+    return await repositorio.eliminarCategoria(titulo);
   }
 }

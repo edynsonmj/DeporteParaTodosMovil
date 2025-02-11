@@ -29,7 +29,7 @@ class _InscripcionesParticularesState
       _categoriaViewModel =
           Provider.of<CategoriaViewModel>(context, listen: false);
       //TODO: crear endpoint que traiga solo los titulos de las categorias
-      _categoriaViewModel.fetchCategorias();
+      _categoriaViewModel.cargarCategorias(context);
     });
   }
 

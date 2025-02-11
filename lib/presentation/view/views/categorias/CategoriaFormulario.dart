@@ -34,36 +34,37 @@ class _CategoriaFormularioState extends State<CategoriaFormulario> {
   final _descripcionController = TextEditingController();
   File? _imagen;
 
-  @override
-  void dispose(){
-    _tituloController.dispose();
-    _descripcionController.dispose();
+  void clear() {
+    _tituloController.clear();
+    _descripcionController.clear();
     _imagen = null;
-    super.dispose();
   }
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_){
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _viewModel = Provider.of<CategoriaViewModel>(context, listen: false);
     });
     _categoria = widget.categoria;
-    if(_categoria!=null){
+    if (_categoria != null) {
       _esEdicion = true;
-      if(_categoria!.titulo!=null) _tituloController.text = _categoria!.titulo;
-      if(_categoria!.descripcion!=null) _descripcionController.text = _categoria!.descripcion;
-      if(_categoria!.imagen!=null){
-        if(_categoria!.imagen!.datos!=null){
+      if (_categoria!.titulo != null)
+        _tituloController.text = _categoria!.titulo;
+      if (_categoria!.descripcion != null)
+        _descripcionController.text = _categoria!.descripcion;
+      if (_categoria!.imagen != null) {
+        if (_categoria!.imagen!.datos != null) {
           _convertirImagen();
         }
       }
     }
   }
 
-  Future<void> _convertirImagen() async{
-    File? imagen = await ConvertFile.uInt8ListToFile(_categoria!.imagen!.datos, _categoria!.imagen!.nombre);
-    setState((){
+  Future<void> _convertirImagen() async {
+    File? imagen = await ConvertFile.uInt8ListToFile(
+        _categoria!.imagen!.datos, _categoria!.imagen!.nombre);
+    setState(() {
       _imagen = imagen;
     });
   }
@@ -109,15 +110,15 @@ class _CategoriaFormularioState extends State<CategoriaFormulario> {
         margin: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
         child: SingleChildScrollView(
             child: Form(
-              key: _formKey,
+                key: _formKey,
                 child: Column(
-          children: [
-            _inputTitulo(),
-            _inputDescripcion(),
-            _inputImagen(),
-            _acciones()
-          ],
-        ))));
+                  children: [
+                    _inputTitulo(),
+                    _inputDescripcion(),
+                    _inputImagen(),
+                    _acciones()
+                  ],
+                ))));
   }
 
   Widget _inputTitulo() {
@@ -156,13 +157,13 @@ class _CategoriaFormularioState extends State<CategoriaFormulario> {
         OutlinedButton(
           onPressed: _selectorImagen,
           child:
-          Text((_imagen == null) ? 'Seleccionar Imagen' : 'Cambiar imagen'),
+              Text((_imagen == null) ? 'Seleccionar Imagen' : 'Cambiar imagen'),
         )
       ]),
     );
   }
 
-  Widget _acciones(){
+  Widget _acciones() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Row(
@@ -175,25 +176,25 @@ class _CategoriaFormularioState extends State<CategoriaFormulario> {
     );
   }
 
-  Widget _botonSubmit(){
+  Widget _botonSubmit() {
     return Container(
       child: FilledButton(
-          onPressed: (){
-            _submitForm();
-          },
-          child: Text('GUARDAR'),
+        onPressed: () {
+          _submitForm();
+        },
+        child: Text('GUARDAR'),
       ),
     );
   }
 
-  Widget _botonCancelar(){
+  Widget _botonCancelar() {
     return Container(
       child: FilledButton(
-        onPressed: (){
-          dispose();
-          if(Navigator.of(context).canPop()){
+        onPressed: () {
+          if (Navigator.of(context).canPop()) {
             Navigator.pop(context);
           }
+          clear();
         },
         child: Text('CANCELAR'),
         style: FilledButton.styleFrom(backgroundColor: ColorTheme.secondary),
@@ -204,7 +205,7 @@ class _CategoriaFormularioState extends State<CategoriaFormulario> {
   Future<void> _selectorImagen() async {
     final ImagePicker _picker = ImagePicker();
     final XFile? pickedImage =
-    await _picker.pickImage(source: ImageSource.gallery);
+        await _picker.pickImage(source: ImageSource.gallery);
 
     if (pickedImage != null) {
       setState(() {

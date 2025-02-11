@@ -30,7 +30,8 @@ class _InscripcionesGeneralesState extends State<InscripcionesGeneralesView> {
       categoriaViewModel =
           Provider.of<CategoriaViewModel>(context, listen: false);
       //cargamos las categorias
-      categoriaViewModel.fetchCategorias();
+      //categoriaViewModel.fetchCategorias();
+      categoriaViewModel.cargarCategorias(context);
     });
   }
 

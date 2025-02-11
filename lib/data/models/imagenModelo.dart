@@ -1,5 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
+
+import 'package:mime/mime.dart';
 
 class ImagenModelo {
   final int? id;
