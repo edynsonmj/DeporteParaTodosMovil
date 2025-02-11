@@ -20,4 +20,8 @@ class ServicioCategoria {
   Future<RespuestaModelo> insertarCategoria(CategoriaEntidad entidad) async{
     return await repositorio.insertarCategoria(entidad);
   }
+
+  Future<RespuestaModelo> encontrarCategorias() async{
+    return await repositorio.encontrarCategorias();
+  }
 }

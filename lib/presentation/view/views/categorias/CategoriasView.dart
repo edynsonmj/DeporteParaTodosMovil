@@ -27,7 +27,8 @@ class _CategoriasViewState extends State<CategoriasView> {
       //cargamos las categorias
       WidgetsBinding.instance.addPostFrameCallback((_){
         categoriaViewModel = Provider.of<CategoriaViewModel>(context, listen: false);
-        categoriaViewModel.fetchCategorias();
+        //categoriaViewModel.fetchCategorias();
+        categoriaViewModel.cargarCategorias(context);
       });
   }
 

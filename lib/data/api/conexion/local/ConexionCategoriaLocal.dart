@@ -31,4 +31,10 @@ class ConexionCategoriaLocal implements ConexionCategoria {
     // TODO: implement guardarCategoria
     throw UnimplementedError();
   }
+
+  @override
+  Future<RespuestaModelo> encontrarCategorias() {
+    // TODO: implement encontrarCategorias
+    throw UnimplementedError();
+  }
 }

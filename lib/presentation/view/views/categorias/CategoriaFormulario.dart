@@ -124,12 +124,12 @@ class _CategoriaFormularioState extends State<CategoriaFormulario> {
     return TextFormField(
       controller: _tituloController,
       decoration: InputDecoration(labelText: 'Titulo'),
-      /*validator: (value) {
+      validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Ingresa titulo de la categoria, por favor';
         }
         return null;
-      },*/
+      },
     );
   }
 
@@ -139,12 +139,12 @@ class _CategoriaFormularioState extends State<CategoriaFormulario> {
       maxLines: 10,
       minLines: 1,
       decoration: InputDecoration(label: Text('Descripcion')),
-      /*validator: (value) {
+      validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Ingresa titulo de la categoria, por favor';
         }
         return null;
-      },*/
+      },
     );
   }
 

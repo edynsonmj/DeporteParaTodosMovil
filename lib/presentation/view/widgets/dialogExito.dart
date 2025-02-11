@@ -10,7 +10,9 @@ class DialogExito extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(titulo),
-      content: Center(child: Text('mensaje')),
+      content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [Text(mensaje)]),
       actions: [
         FilledButton(
             onPressed: () {

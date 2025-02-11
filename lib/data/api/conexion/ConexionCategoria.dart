@@ -3,5 +3,6 @@ import 'package:movil/data/models/respuestaModelo.dart';
 
 abstract class ConexionCategoria {
   Future<List<categoriaModelo>> obtenerCategorias();
+  Future<RespuestaModelo> encontrarCategorias();
   Future<RespuestaModelo> guardarCategoria(categoriaModelo categoria);
 }

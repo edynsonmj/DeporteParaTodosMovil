@@ -36,6 +36,35 @@ class CategoriaRepositorio {
         .toList();
   }
 
+  Future<RespuestaModelo> encontrarCategorias() async{
+    RespuestaModelo respuesta = await cliente.encontrarCategorias();
+    //transformar datos si el codigo es 200
+    if(respuesta.codigoHttp==200){
+      //convertir los datos de modelo a entidad para que sean manjados por el front
+      List<categoriaModelo> listaModelo = respuesta.datos as List<categoriaModelo>;
+      List<CategoriaEntidad> listaEntidad = [];
+      //convertimos los datos de modelo a entidad
+      for(var item in listaModelo){
+        CategoriaEntidad entidad = CategoriaEntidad(
+            titulo: item.titulo,
+            descripcion: item.descripcion,
+            imagen: (item.imagen==null)
+                ?null
+                :ImagenEntidad( //si la imagen no es nula se crea el objeto
+                id: item.imagen!.id,
+                nombre: item.imagen!.nombre,
+                tipoArchivo: item.imagen!.tipoArchivo,
+                longitud: item.imagen!.longitud,
+                datos: item.imagen!.convertirDeBase64()), //se convierte la imagen a un tipo de dato manejable en el sistema
+        );
+        listaEntidad.add(entidad);
+      }
+      return RespuestaModelo(codigoHttp: 200, datos: listaEntidad);
+    }
+    //si el estado no es 200 solo se envia la respuesta que debe contener el o los errores encontrados con sus codigos
+    return respuesta;
+  }
+
   Future<RespuestaModelo> insertarCategoria(CategoriaEntidad entidad) async{
     categoriaModelo modeloPeticion = categoriaModelo(titulo: entidad.titulo, descripcion: entidad.descripcion);
     CategoriaEntidad entidadRespuesta;
