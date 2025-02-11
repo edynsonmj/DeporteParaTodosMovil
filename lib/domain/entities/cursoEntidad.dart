@@ -1,3 +1,4 @@
+import 'package:movil/data/models/cursoModelo.dart';
 import 'package:movil/domain/entities/imagenEntidad.dart';
 
 class CursoEntidad {
@@ -13,4 +14,17 @@ class CursoEntidad {
       required this.tituloCategoria,
       required this.descripcion,
       this.imagen});
+
+  factory CursoEntidad.fromModelo(CursoModelo modelo) {
+    ImagenEntidad? imagen;
+    if (modelo.imagen != null) {
+      imagen = ImagenEntidad.fromModelo(modelo.imagen!);
+    }
+    return CursoEntidad(
+        nombreCurso: modelo.nombreCurso,
+        nombreDeporte: modelo.nombreDeporte,
+        tituloCategoria: modelo.tituloCategoria,
+        descripcion: modelo.descripcion,
+        imagen: imagen);
+  }
 }

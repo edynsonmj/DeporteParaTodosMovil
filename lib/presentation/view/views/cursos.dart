@@ -59,7 +59,8 @@ class _CursosViewState extends State<CursosView> {
       final cursosViewModel =
           Provider.of<CursosViewModel>(context, listen: false);
       //cargamos los cursos
-      cursosViewModel.cargarListaCursos();
+      //cursosViewModel.cargarListaCursos();
+      cursosViewModel.listarTodosCursos(context);
     });
   }
 

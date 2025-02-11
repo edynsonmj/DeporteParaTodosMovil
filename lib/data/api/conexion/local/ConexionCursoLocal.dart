@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:movil/data/api/conexion/ConexionCurso.dart';
 import 'package:movil/data/models/cursoModelo.dart';
+import 'package:movil/data/models/errorModelo.dart';
 import 'package:movil/data/models/respuestaModelo.dart';
 import 'package:movil/presentation/view/views/curso.dart';
 
@@ -54,9 +55,20 @@ class ConexionCursoLocal implements ConexionCurso {
 
   @override
   Future<RespuestaModelo> encontrarTodosCursos() {
-    late RespuestaModelo respuesta;
-
-    // TODO: implement encontrarTodosCursos
-    return Future.value(null);
+    if (_base.isEmpty) {
+      return Future.delayed(Duration(seconds: 2), () {
+        return RespuestaModelo(
+            codigoHttp: 204,
+            datos: _base,
+            error: ErrorModelo(
+                codigoHttp: 204,
+                mensaje: 'No hay cursos en el sistema',
+                url: 'mock/cursos',
+                metodo: 'GET'));
+      });
+    }
+    return Future.delayed(Duration(seconds: 2), () {
+      return RespuestaModelo(codigoHttp: 200, datos: _base, error: null);
+    });
   }
 }
