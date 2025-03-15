@@ -87,7 +87,7 @@ class _AlumnoState extends State<Alumnoview> {
             dense: true,
             visualDensity: VisualDensity.compact,
             title: Text(
-              '1234567890',
+              '123456789',
               style: Tipografia.cuerpo1(),
             ),
             subtitle: Text('Identificacion', style: Tipografia.cuerpo2()),
@@ -114,7 +114,7 @@ class _AlumnoState extends State<Alumnoview> {
             dense: true,
             visualDensity: VisualDensity.compact,
             title: Text(
-              'Ingeniria Electronica y telecomunicaciones',
+              'FIET',
               style: Tipografia.cuerpo1(),
             ),
             subtitle: Text('Facultad', style: Tipografia.cuerpo2()),

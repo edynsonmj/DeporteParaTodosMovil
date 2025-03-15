@@ -15,7 +15,7 @@ class Curso extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: Bar(title: 'Curso X'),
+        appBar: Bar(title: 'Futbol masculino'),
         body: contenedorSeguro(),
         drawer: Menulateral());
   }
@@ -75,7 +75,7 @@ class Curso extends StatelessWidget {
               style: Tipografia.cuerpo1(),
             ),
             subtitle: Text(
-              'Futbol femenino',
+              'Futbol masculino',
               style: Tipografia.cuerpo2(),
             ),
             contentPadding: EdgeInsets.symmetric()),
@@ -93,7 +93,7 @@ class Curso extends StatelessWidget {
             style: Tipografia.cuerpo1(),
           ),
           subtitle: Text(
-            'Recreativo',
+            'Deporte Recreativo',
             style: Tipografia.cuerpo2(),
           ),
           contentPadding: EdgeInsets.symmetric(),

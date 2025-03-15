@@ -95,7 +95,7 @@ class _CursosViewState extends State<CursosView> {
         ));
     Widget ajustes = OutlinedButton.icon(
       onPressed: () {},
-      label: Text('AJUSTES'),
+      label: Text('AGREGAR CURSO'),
       icon: Icon(Icons.add),
     );
     //elementos de la vista sobre las cuales se puede hacer scroll

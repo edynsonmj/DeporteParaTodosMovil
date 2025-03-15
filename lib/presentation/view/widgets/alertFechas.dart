@@ -170,10 +170,11 @@ class _AlertFechasState extends State<AlertFechas> {
               TextButton(
                 onPressed: () {
                   //cierra el dialogo
+                  /* se genera error al cancelar, corregir
                   setState(() {
                     _fechaInicial = null;
                     _fechaFinal = null;
-                  });
+                  });*/
                   Navigator.of(context).pop();
                 },
                 style: OutlinedButton.styleFrom(

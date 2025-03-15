@@ -83,7 +83,7 @@ class _InstructorState extends State<Instructorview> {
             dense: true,
             visualDensity: VisualDensity.compact,
             title: Text(
-              '1234567890',
+              '987456321',
               style: Tipografia.cuerpo1(),
             ),
             subtitle: Text('Identificacion', style: Tipografia.cuerpo2()),
@@ -125,7 +125,7 @@ class _InstructorState extends State<Instructorview> {
             dense: true,
             visualDensity: VisualDensity.compact,
             title: Text(
-              '5',
+              '...',
               style: Tipografia.cuerpo1(),
             ),
             subtitle:
@@ -135,7 +135,7 @@ class _InstructorState extends State<Instructorview> {
             dense: true,
             visualDensity: VisualDensity.compact,
             title: Text(
-              '5/5/2025',
+              'No definido',
               style: Tipografia.cuerpo1(),
             ),
             subtitle: Text('Fecha limite', style: Tipografia.cuerpo2()),

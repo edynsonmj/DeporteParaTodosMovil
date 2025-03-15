@@ -15,7 +15,7 @@ class Grupo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Bar(title: 'Grupo X'),
+      appBar: Bar(title: 'Futbol masculino'),
       drawer: Menulateral(),
       body: contenedorSeguro(context),
     );
@@ -191,7 +191,7 @@ class Grupo extends StatelessWidget {
               ),
               ListTile(
                   title: Text('Curso', style: Tipografia.cuerpo1()),
-                  subtitle: Text('Futbol femenino - recreativo',
+                  subtitle: Text('Futbol masculino - Deporte Recreativo',
                       style: Tipografia.cuerpo2())),
               ListTile(
                   title: Text('Descripcion', style: Tipografia.cuerpo1()),
@@ -217,7 +217,7 @@ class Grupo extends StatelessWidget {
                     style: Tipografia.cuerpo1(),
                   ),
                   subtitle: Text(
-                    'Futbol femenino 2023_2 - recreativo',
+                    'Fubol masculino: 2024.2 - Deporte Recreativo',
                     style: Tipografia.cuerpo2(),
                   )),
               ListTile(

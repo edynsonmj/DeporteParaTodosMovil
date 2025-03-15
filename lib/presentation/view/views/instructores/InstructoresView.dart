@@ -103,7 +103,8 @@ class _AlumnosState extends State<Instructoresview> {
             'Listado instructores',
             style: Tipografia.h5(),
           ),
-          listadoInstructores(),
+          //listadoInstructores(),
+          listadoInstructores2()
         ],
       ),
     );
@@ -132,5 +133,39 @@ class _AlumnosState extends State<Instructoresview> {
             },
           );
         });
+  }
+
+  Widget listadoInstructores2() {
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        InkWell(
+          child: MiniTarjeta(
+            atrTitulo: 'Edynson Muñoz',
+            atrSubTitulo: 'Reportó: 5/6/2025',
+            existeCampoImagen: true,
+            atrIndicadorEstado: 'Activo',
+            atrIndicador: '987456321',
+          ),
+          onTap: () {
+            Navigator.pushNamed(context, AppRutas.instructor,
+                arguments: 'Edynson Muñoz');
+          },
+        ),
+        InkWell(
+          child: MiniTarjeta(
+            atrTitulo: 'Pablo Megia',
+            atrSubTitulo: 'Reportó: 5/6/2025',
+            existeCampoImagen: true,
+            atrIndicadorEstado: 'Activo',
+            atrIndicador: '13456789',
+          ),
+          onTap: () {
+            Navigator.pushNamed(context, AppRutas.instructor,
+                arguments: 'Pablo Megia');
+          },
+        )
+      ],
+    );
   }
 }

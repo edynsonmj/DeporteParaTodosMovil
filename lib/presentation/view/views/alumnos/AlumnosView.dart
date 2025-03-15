@@ -159,7 +159,8 @@ class _AlumnosState extends State<Alumnosview> {
             'Listado alumno',
             style: Tipografia.h5(),
           ),
-          listadoAlumnos(),
+          //listadoAlumnos(),
+          listadoAlumnos2(),
         ],
       ),
     );
@@ -177,7 +178,7 @@ class _AlumnosState extends State<Alumnosview> {
           return InkWell(
             child: MiniTarjeta(
               atrTitulo: 'alumno $index',
-              atrSubTitulo: 'identificacion $index',
+              atrSubTitulo: '2165478$index',
               existeCampoImagen: true,
               atrIndicadorEstado: 'tipo',
               atrIndicador: 'facultad',
@@ -188,5 +189,52 @@ class _AlumnosState extends State<Alumnosview> {
             },
           );
         });
+  }
+
+  Widget listadoAlumnos2() {
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        InkWell(
+          child: MiniTarjeta(
+            atrTitulo: 'Edynson Muñoz Jimenez',
+            atrSubTitulo: '123456789',
+            existeCampoImagen: true,
+            atrIndicadorEstado: 'Estudiante',
+            atrIndicador: 'FIET',
+          ),
+          onTap: () {
+            Navigator.pushNamed(context, AppRutas.alumno,
+                arguments: 'Edynson Muñoz Jimenez');
+          },
+        ),
+        InkWell(
+          child: MiniTarjeta(
+            atrTitulo: 'Pepito perez',
+            atrSubTitulo: '123456784',
+            existeCampoImagen: true,
+            atrIndicadorEstado: 'Administrativo',
+            atrIndicador: 'FIET',
+          ),
+          onTap: () {
+            Navigator.pushNamed(context, AppRutas.alumno,
+                arguments: 'Edynson Muñoz Jimenez');
+          },
+        ),
+        InkWell(
+          child: MiniTarjeta(
+            atrTitulo: 'Miguel Angel',
+            atrSubTitulo: '123456787',
+            existeCampoImagen: true,
+            atrIndicadorEstado: 'Estudiante',
+            atrIndicador: 'FIET',
+          ),
+          onTap: () {
+            Navigator.pushNamed(context, AppRutas.alumno,
+                arguments: 'Edynson Muñoz Jimenez');
+          },
+        )
+      ],
+    );
   }
 }

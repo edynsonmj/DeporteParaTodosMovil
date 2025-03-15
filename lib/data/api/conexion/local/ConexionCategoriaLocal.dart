@@ -11,8 +11,17 @@ import 'package:movil/data/models/respuestaModelo.dart';
 class ConexionCategoriaLocal implements ConexionCategoria {
   final List<categoriaModelo> _base = [
     categoriaModelo(
-        titulo: 'Categoria prueba',
-        descripcion: 'descripcion de la categoria de prueba'),
+        titulo: 'Deporte Recreativo',
+        descripcion:
+            'El deporte recreativo es la modalidad definida como aquella practicada por placer y diversión, sin ninguna intención de competir o superar a un adversario.'),
+    categoriaModelo(
+        titulo: 'Semilleros deportivos',
+        descripcion:
+            'Este espacio tiene la facultad de ayudar a desarrollar destrezas físicas, hacer ejercicios, socializar, divertirse, aprender a jugar formando parte de un grupo o equipo, aprender a jugar limpio y a mejorar su autoestima.'),
+    categoriaModelo(
+        titulo: 'Seleccionados',
+        descripcion:
+            'Es un espacio para el entrenamiento y participación en eventos deportivos competitivos de carácter universitario, realizados a nivel local, nacional e internacional, bien sea en la red ASCUN o invitaciones de otras universidades.'),
   ];
   @override
   Future<RespuestaModelo> guardarCategoria(categoriaModelo categoria) async {

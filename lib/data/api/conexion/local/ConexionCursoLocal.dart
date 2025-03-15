@@ -20,9 +20,21 @@ class ConexionCursoLocal implements ConexionCurso {
 
   final List<CursoModelo> _base = [
     CursoModelo(
-        nombreCurso: 'Curso de prueba',
-        nombreDeporte: 'Deporte prueba',
-        tituloCategoria: 'Categoria prueba',
+        nombreCurso: 'Futbol masculino',
+        nombreDeporte: 'Futbol',
+        tituloCategoria: 'Deporte Recreativo',
+        descripcion:
+            'Ullamco duis laborum sint occaecat sit ut culpa culpa. Quis adipisicing mollit sunt minim cupidatat sit Lorem ea deserunt esse magna duis. Labore deserunt minim proident ullamco nostrud ipsum minim. Est proident mollit elit consectetur. Ipsum Lorem quis mollit ad magna in culpa sit esse.'),
+    CursoModelo(
+        nombreCurso: 'Baloncesto femenino',
+        nombreDeporte: 'Baloncesto',
+        tituloCategoria: 'Deporte Recreativo',
+        descripcion:
+            'Ullamco duis laborum sint occaecat sit ut culpa culpa. Quis adipisicing mollit sunt minim cupidatat sit Lorem ea deserunt esse magna duis. Labore deserunt minim proident ullamco nostrud ipsum minim. Est proident mollit elit consectetur. Ipsum Lorem quis mollit ad magna in culpa sit esse.'),
+    CursoModelo(
+        nombreCurso: 'Natacion nivel 1',
+        nombreDeporte: 'Natacion',
+        tituloCategoria: 'Deporte Recreativo',
         descripcion:
             'Ullamco duis laborum sint occaecat sit ut culpa culpa. Quis adipisicing mollit sunt minim cupidatat sit Lorem ea deserunt esse magna duis. Labore deserunt minim proident ullamco nostrud ipsum minim. Est proident mollit elit consectetur. Ipsum Lorem quis mollit ad magna in culpa sit esse.')
   ];
